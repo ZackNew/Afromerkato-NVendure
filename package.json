@@ -5,11 +5,12 @@
   "scripts": {
     "dev:server": "ts-node ./src/index.ts",
     "dev:worker": "ts-node ./src/index-worker.ts",
-    "dev": "concurrently npm:dev:*",
+    "dev": "nodemon -x concurrently npm:dev:*",
     "build": "tsc",
     "start:server": "node ./dist/index.js",
     "start:worker": "node ./dist/index-worker.js",
-    "start": "concurrently npm:start:*"
+    "start": "concurrently npm:start:*",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
     "@vendure/admin-ui-plugin": "3.0.0",
@@ -17,9 +18,12 @@
     "@vendure/core": "3.0.0",
     "@vendure/email-plugin": "3.0.0",
     "dotenv": "16.4.5",
-    "mysql": "2.18.1"
+    "mysql": "2.18.1",
+    "nodemon": "^3.1.4"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/typescript": "4.0.9",
     "@vendure/cli": "^3.0.0",
     "concurrently": "8.2.2",
     "typescript": "5.3.3"
