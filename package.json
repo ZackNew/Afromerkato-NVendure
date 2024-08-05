@@ -6,17 +6,23 @@
     "dev:server": "ts-node ./src/index.ts",
     "dev:worker": "ts-node ./src/index-worker.ts",
     "dev": "nodemon -x concurrently npm:dev:*",
-    "build": "tsc",
-    "start:server": "node ./dist/index.js",
-    "start:worker": "node ./dist/index-worker.js",
+    "build": "rimraf dist && tsc && yarn copy",
+    "build:admin": "rimraf admin-ui && npx ts-node ./src/compile-admin-ui.ts",
+    "start:server": "node ./dist/src/index.js",
+    "start:worker": "node ./dist/src/index-worker.js",
     "start": "concurrently npm:start:*",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen --config codegen.ts",
+    "compile-admin-ui": "ts-node ./src/compile-admin-ui.ts",
+    "copy": "npx copyfiles -u 1 'admin-ui/dist/**/*' dist"
   },
   "dependencies": {
     "@vendure/admin-ui-plugin": "3.0.0",
     "@vendure/asset-server-plugin": "3.0.0",
     "@vendure/core": "3.0.0",
     "@vendure/email-plugin": "3.0.0",
+    "@vendure/harden-plugin": "^3.0.0",
+    "@vendure/ui-devkit": "^3.0.0",
+    "copyfiles": "^2.4.1",
     "dotenv": "16.4.5",
     "mysql": "2.18.1",
     "nodemon": "^3.1.4"
@@ -26,6 +32,7 @@
     "@graphql-codegen/typescript": "4.0.9",
     "@vendure/cli": "^3.0.0",
     "concurrently": "8.2.2",
+    "ts-node": "^10.9.2",
     "typescript": "5.3.3"
   }
 }
