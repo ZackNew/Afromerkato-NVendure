@@ -6,7 +6,7 @@
     "dev:server": "ts-node ./src/index.ts",
     "dev:worker": "ts-node ./src/index-worker.ts",
     "dev": "nodemon -x concurrently npm:dev:*",
-    "build": "rimraf dist && tsc && yarn copy",
+    "build": "rimraf dist && tsc && npm run copy",
     "build:admin": "rimraf admin-ui && npx ts-node ./src/compile-admin-ui.ts",
     "start:server": "node ./dist/src/index.js",
     "start:worker": "node ./dist/src/index-worker.js",

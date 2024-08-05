@@ -144,7 +144,7 @@ export const config: VendureConfig = {
        * When in prod mode
        */
       // app: {
-      //   path: path.join(__dirname, "../../admin-ui/dist"),
+      //   path: path.join(__dirname, "../dist"),
       // },
     }),
   ],
