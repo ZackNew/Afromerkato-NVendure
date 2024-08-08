@@ -18,7 +18,7 @@ import { AMOrderCodeStrategy } from "./config/am-order-code.strategy";
 import { ReportsPlugin } from "./plugins/reports/reports.plugin";
 //import { QuotesPlugin } from "./plugins/quotes/quotes.plugin";
 import { ReviewsPlugin } from "./plugins/reviews/reviews-plugin";
-//import { ChartsPlugin } from "./plugins/charts/charts.plugin";
+import { ChartsPlugin } from "./plugins/charts/charts.plugin";
 
 const IS_DEV = process.env.APP_ENV === "dev";
 
@@ -144,7 +144,7 @@ export const config: VendureConfig = {
            ReportsPlugin.ui,
            //QuotesPlugin.ui,
            ReviewsPlugin.uiExtensions,
-           //ChartsPlugin.ui,
+           ChartsPlugin.ui,
         ],
       }),
 
@@ -158,6 +158,6 @@ export const config: VendureConfig = {
      ReportsPlugin,
     // QuotesPlugin.init({}),
      ReviewsPlugin,
-     //ChartsPlugin.init({}),
+     ChartsPlugin.init({}),
   ],
 };
