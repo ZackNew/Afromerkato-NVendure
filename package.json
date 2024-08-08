@@ -25,7 +25,12 @@
     "copyfiles": "^2.4.1",
     "dotenv": "16.4.5",
     "mysql": "2.18.1",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "pdfmake": "^0.2.10",
+    "write-excel-file": "^2.0.5",
+    "jspdf": "^2.5.1",
+    "chart.js": "4.3.0"
+
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.2",
