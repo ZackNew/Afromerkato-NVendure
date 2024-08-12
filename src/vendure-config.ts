@@ -15,6 +15,10 @@ import { HardenPlugin } from "@vendure/harden-plugin";
 import "dotenv/config";
 import path from "path";
 import { AMOrderCodeStrategy } from "./config/am-order-code.strategy";
+import { ReportsPlugin } from "./plugins/reports/reports.plugin";
+// import { QuotesPlugin } from "./plugins/quotes/quotes.plugin";
+import { ReviewsPlugin } from "./plugins/reviews/reviews-plugin";
+import { ChartsPlugin } from "./plugins/charts/charts.plugin";
 
 const IS_DEV = process.env.APP_ENV === "dev";
 
@@ -137,6 +141,10 @@ export const config: VendureConfig = {
           {
             translations: { en: path.join(__dirname, "translations/en.json") },
           },
+          ReportsPlugin.ui,
+          //QuotesPlugin.ui,
+          ReviewsPlugin.uiExtensions,
+          ChartsPlugin.ui,
         ],
       }),
 
@@ -147,5 +155,9 @@ export const config: VendureConfig = {
       //   path: path.join(__dirname, "../dist"),
       // },
     }),
+    ReportsPlugin,
+    // QuotesPlugin.init({}),
+    ReviewsPlugin,
+    ChartsPlugin.init({}),
   ],
 };

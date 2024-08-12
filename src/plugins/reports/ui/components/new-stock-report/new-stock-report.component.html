@@ -1,0 +1,136 @@
+<vdr-page-header>
+  <vdr-page-title></vdr-page-title>
+</vdr-page-header>
+<vdr-page-body>
+  <!-- optional if you want some button at the top -->
+  <vdr-page-block>
+    <vdr-action-bar>
+       <vdr-ab-right>
+        <vdr-dropdown>
+          <button class="button primary" vdrDropdownTrigger>
+            <clr-icon shape="plus"></clr-icon>
+            Export to
+          </button>
+          <vdr-dropdown-menu vdrPosition="bottom-left">
+            <button
+              #myInput
+              type="button"
+              vdrDropdownItem
+              (click)="generatePdfByMake(items$)"
+            >
+              PDF
+            </button>
+            <button
+              type="button"
+              vdrDropdownItem
+              (click)="exportToExcel(items$)"
+            >
+              EXCEL
+            </button>
+          </vdr-dropdown-menu>
+        </vdr-dropdown>
+      </vdr-ab-right>
+      <clr-spinner *ngIf="stockListIsLoading" clrMedium></clr-spinner>
+    </vdr-action-bar>
+  </vdr-page-block>
+  <div #formattedPdf>
+    <vdr-data-table-2
+      id="newstock-list"
+      [items]="items$ | async"
+      [itemsPerPage]="itemsPerPage$ | async"
+      [totalItems]="totalItems$ | async"
+      [currentPage]="currentPage$ | async"
+      [filters]="filters"
+      (pageChange)="setPageNumber($event)"
+      (itemsPerPageChange)="setItemsPerPage($event)"
+    >
+      <!-- optional if you want to support bulk actions -->
+      <vdr-bulk-action-menu
+        locationId="newstock-list"
+        [hostComponent]="this"
+        [selectionManager]="selectionManager"
+      />
+
+      <!-- Adds a search bar -->
+      <vdr-dt2-search
+        [searchTermControl]="searchTermControl"
+        searchTermPlaceholder="Filter by name"
+      />
+
+      <vdr-dt2-column heading="Image">
+        <ng-template let-result="item">
+          <div class="image-placeholder">
+            <img
+              *ngIf="result.featuredAsset?.preview"
+              [src]="result.featuredAsset?.preview"
+            />
+            <clr-icon
+              *ngIf="!result.featuredAsset?.preview"
+              shape="image"
+              size="48"
+            />
+            <ng-template #imagePlaceholder>
+              <div class="placeholder">
+                <clr-icon shape="image" size="48"></clr-icon>
+              </div>
+            </ng-template>
+          </div>
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Name">
+        <ng-template let-result="item">
+          {{ result.name }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Created At">
+        <ng-template let-result="item">
+          {{ result.createdAt | date }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Sku">
+        <ng-template let-result="item">
+          {{ result.sku }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Enabled">
+        <ng-template let-result="item">
+          {{ result.enabled }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Price">
+        <ng-template let-result="item">
+          ETB {{ result.price / 100 }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Price with tax">
+        <ng-template let-result="item">
+          ETB {{ result.priceWithTax / 100 | number : "1.2-2" }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Stock Location">
+        <ng-template let-result="item">
+          {{ result.stockLevels[0]?.stockLocation?.name }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Stock">
+        <ng-template let-result="item">
+          {{result.stockLevels[0].stockOnHand }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Stock Allocated">
+        <ng-template let-result="item">
+          {{ result.stockLevels[0].stockAllocated }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Stock Onhand">
+        <ng-template let-result="item">
+          {{result.stockLevels[0].stockOnHand-result.stockLevels[0].stockAllocated-result.outOfStockThreshold}}
+        </ng-template>
+      </vdr-dt2-column>
+    </vdr-data-table-2>
+  </div>
+  <!-- <input #myInput [(ngModel)]="items$">
+<button (click)="getValue(items$)">Get Value</button>
+    
+   <p>uuuuuuuuuuuuuuuuuuuuuuuuu</p> -->
+</vdr-page-body>
