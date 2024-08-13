@@ -1,0 +1,38 @@
+stages:
+  - install
+  - lint
+  - build
+
+variables:
+  NODE_VERSION: "20"
+  NPM_CACHE_FOLDER: ".npm"
+
+default:
+  image: node:$NODE_VERSION
+  cache:
+    paths:
+      - $NPM_CACHE_FOLDER
+
+before_script:
+  - npm config set cache-folder $NPM_CACHE_FOLDER --global
+
+install_dependencies:
+  stage: install
+  script:
+    - npm i
+  artifacts:
+    paths:
+      - node_modules/
+      - vendure/node_modules/
+      - storefront/node_modules/
+    expire_in: 1 week
+
+lint_check:
+  stage: lint
+  script:
+    - npm run lint:check
+
+build_vendure:
+  stage: build
+  script:
+    - npm run build
