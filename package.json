@@ -19,7 +19,8 @@
     "compile-admin-ui": "ts-node ./src/compile-admin-ui.ts",
     "copy": "npx copyfiles -u 1 'admin-ui/dist/**/*' dist",
     "lint:check": "npx prettier --check . && DEBUG=eslint:cli-engine npx eslint .",
-    "lint:fix": "DEBUG=eslint:cli-engine npx prettier --write . && npx eslint --fix ."
+    "lint:fix": "DEBUG=eslint:cli-engine npx prettier --write . && npx eslint --fix .",
+    "commitlint-check": "npx --no-install commitlint --edit"
   },
   "dependencies": {
     "@vendure/admin-ui-plugin": "3.0.0",
@@ -38,6 +39,8 @@
     "write-excel-file": "^2.0.5"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@eslint/js": "^9.9.0",
     "@graphql-codegen/cli": "5.0.2",
     "@graphql-codegen/typescript": "4.0.9",
