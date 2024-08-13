@@ -2,6 +2,10 @@
   "name": "my-shop",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": ">= 10",
+    "yarn": "Please use NPM"
+  },
   "scripts": {
     "dev:server": "ts-node ./src/index.ts",
     "dev:worker": "ts-node ./src/index-worker.ts",
@@ -30,7 +34,6 @@
     "write-excel-file": "^2.0.5",
     "jspdf": "^2.5.1",
     "chart.js": "4.3.0"
-
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.2",
