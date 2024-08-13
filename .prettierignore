@@ -1,0 +1,8 @@
+dist
+admin-ui
+node_modules
+src/images
+static
+.gitignore
+.idea
+.vscode

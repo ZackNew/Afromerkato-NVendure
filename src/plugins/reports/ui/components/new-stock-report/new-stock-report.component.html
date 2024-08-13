@@ -5,7 +5,7 @@
   <!-- optional if you want some button at the top -->
   <vdr-page-block>
     <vdr-action-bar>
-       <vdr-ab-right>
+      <vdr-ab-right>
         <vdr-dropdown>
           <button class="button primary" vdrDropdownTrigger>
             <clr-icon shape="plus"></clr-icon>
@@ -104,7 +104,7 @@
       </vdr-dt2-column>
       <vdr-dt2-column heading="Price with tax">
         <ng-template let-result="item">
-          ETB {{ result.priceWithTax / 100 | number : "1.2-2" }}
+          ETB {{ result.priceWithTax / 100 | number: "1.2-2" }}
         </ng-template>
       </vdr-dt2-column>
       <vdr-dt2-column heading="Stock Location">
@@ -114,7 +114,7 @@
       </vdr-dt2-column>
       <vdr-dt2-column heading="Stock">
         <ng-template let-result="item">
-          {{result.stockLevels[0].stockOnHand }}
+          {{ result.stockLevels[0].stockOnHand }}
         </ng-template>
       </vdr-dt2-column>
       <vdr-dt2-column heading="Stock Allocated">
@@ -124,7 +124,11 @@
       </vdr-dt2-column>
       <vdr-dt2-column heading="Stock Onhand">
         <ng-template let-result="item">
-          {{result.stockLevels[0].stockOnHand-result.stockLevels[0].stockAllocated-result.outOfStockThreshold}}
+          {{
+            result.stockLevels[0].stockOnHand -
+              result.stockLevels[0].stockAllocated -
+              result.outOfStockThreshold
+          }}
         </ng-template>
       </vdr-dt2-column>
     </vdr-data-table-2>

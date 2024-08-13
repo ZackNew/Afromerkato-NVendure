@@ -1,0 +1,21 @@
+{
+  "extends": ["prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  },
+  "ignorePatterns": [
+    "migration.ts",
+    "test",
+    "dist",
+    "node_modules",
+    "lib",
+    "admin-ui",
+    "*.min.js",
+    ".temp",
+    "generated*",
+    "*.graphql",
+    "env.d.ts",
+    "scripts"
+  ]
+}

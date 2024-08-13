@@ -3,37 +3,34 @@
 </vdr-page-header>
 <vdr-page-body>
   <vdr-page-block>
-     <vdr-action-bar>
-        <vdr-ab-right>
-          <vdr-dropdown>
-            <button class="button primary" vdrDropdownTrigger>
-                <clr-icon shape="plus"></clr-icon>
-                Export to
+    <vdr-action-bar>
+      <vdr-ab-right>
+        <vdr-dropdown>
+          <button class="button primary" vdrDropdownTrigger>
+            <clr-icon shape="plus"></clr-icon>
+            Export to
+          </button>
+          <vdr-dropdown-menu vdrPosition="bottom-left">
+            <button
+              #myInput
+              type="button"
+              vdrDropdownItem
+              (click)="generatePdfByMake(items$)"
+            >
+              PDF
             </button>
-            <vdr-dropdown-menu vdrPosition="bottom-left">
-                <button #myInput
-                    type="button"
-                    vdrDropdownItem
-                    (click)="generatePdfByMake(items$)"
-                >
-                    PDF
-                </button>
-                <button
-                    type="button"
-                    vdrDropdownItem
-                    (click)="generateXl(items$)"
-                >
-                    EXCEL
-                </button>
-            </vdr-dropdown-menu>
+            <button type="button" vdrDropdownItem (click)="generateXl(items$)">
+              EXCEL
+            </button>
+          </vdr-dropdown-menu>
         </vdr-dropdown>
-        </vdr-ab-right>
+      </vdr-ab-right>
       <clr-spinner *ngIf="refundListIsLoading" clrMedium></clr-spinner>
-      </vdr-action-bar>
-  </vdr-page-block>   
+    </vdr-action-bar>
+  </vdr-page-block>
 
-<div #formattedPdf>
-<vdr-data-table-2
+  <div #formattedPdf>
+    <vdr-data-table-2
       id="refund-list"
       [items]="items$ | async"
       [itemsPerPage]="itemsPerPage$ | async"
@@ -42,82 +39,78 @@
       [filters]="filters"
       (pageChange)="setPageNumber($event)"
       (itemsPerPageChange)="setItemsPerPage($event)"
-  >
-    <vdr-bulk-action-menu
+    >
+      <vdr-bulk-action-menu
         locationId="refund-list"
         [hostComponent]="this"
         [selectionManager]="selectionManager"
-    />
-  
-    <vdr-dt2-search
+      />
+
+      <vdr-dt2-search
         [searchTermControl]="searchTermControl"
         searchTermPlaceholder="Filter by title"
-    />
-    
-    <vdr-dt2-column heading="id" >
-      <ng-template let-result="item">
-            {{ result.id }}
-    </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="Created AT" >
+      />
+
+      <vdr-dt2-column heading="id">
+        <ng-template let-result="item">
+          {{ result.id }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Created AT">
         <ng-template let-review="item">
           {{ review.createdAt | date }}
         </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="Order Id" >
-      <ng-template let-result="item">
-        <a href="./orders/{{result.items}}" *ngIf="result.orderId!=-1">
-          {{ result.items }}
-      </a>
-      <span *ngIf="result.orderId==-1">
-          {{ result.items }}
-      </span>
-            
-    </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="shipping" >
-      <ng-template let-review="item">
-        {{ review.shipping }}
-      </ng-template>
-  </vdr-dt2-column>
-  <vdr-dt2-column heading="adjustment" >
-    <ng-template let-review="item">
-      {{ review.adjustment }}
-    </ng-template>
-</vdr-dt2-column>
-    <vdr-dt2-column heading="total" >
-        <ng-template let-review="item">
-          {{review.total/100 |number:'1.2-2' }} ETB
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Order Id">
+        <ng-template let-result="item">
+          <a href="./orders/{{ result.items }}" *ngIf="result.orderId != -1">
+            {{ result.items }}
+          </a>
+          <span *ngIf="result.orderId == -1">
+            {{ result.items }}
+          </span>
         </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="method" >
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="shipping">
+        <ng-template let-review="item">
+          {{ review.shipping }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="adjustment">
+        <ng-template let-review="item">
+          {{ review.adjustment }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="total">
+        <ng-template let-review="item">
+          {{ review.total / 100 | number: "1.2-2" }} ETB
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="method">
         <ng-template let-review="item">
           {{ review.method }}
         </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="state" >
-      <ng-template let-result="item">
-            {{ result.state }}
-    </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="transaction id" >
-      <ng-template let-result="item">
-            {{ result.transactionId }}
-      
-    </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="payment id" >
-      <ng-template let-result="item">
-            {{ result.paymentId }}
-    </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="reason" >
-      <ng-template let-result="item">
-            {{ result.reason }}
-    </ng-template>
-    </vdr-dt2-column>
-
-</vdr-data-table-2>
-</div>
-  
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="state">
+        <ng-template let-result="item">
+          {{ result.state }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="transaction id">
+        <ng-template let-result="item">
+          {{ result.transactionId }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="payment id">
+        <ng-template let-result="item">
+          {{ result.paymentId }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="reason">
+        <ng-template let-result="item">
+          {{ result.reason }}
+        </ng-template>
+      </vdr-dt2-column>
+    </vdr-data-table-2>
+  </div>
 </vdr-page-body>

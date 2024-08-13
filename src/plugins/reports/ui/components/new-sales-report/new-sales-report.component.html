@@ -3,40 +3,35 @@
 </vdr-page-header>
 <vdr-page-body>
   <vdr-page-block>
-     <vdr-action-bar>
-        <vdr-ab-left>
-        </vdr-ab-left>
-        <vdr-ab-right>
-          <vdr-dropdown>
-            <button class="button primary" vdrDropdownTrigger>
-                <clr-icon shape="plus"></clr-icon>
-                Export to
+    <vdr-action-bar>
+      <vdr-ab-left> </vdr-ab-left>
+      <vdr-ab-right>
+        <vdr-dropdown>
+          <button class="button primary" vdrDropdownTrigger>
+            <clr-icon shape="plus"></clr-icon>
+            Export to
+          </button>
+          <vdr-dropdown-menu vdrPosition="bottom-left">
+            <button
+              #myInput
+              type="button"
+              vdrDropdownItem
+              (click)="generatePdfByMake(items$)"
+            >
+              PDF
             </button>
-            <vdr-dropdown-menu vdrPosition="bottom-left">
-                <button #myInput
-                    type="button"
-                    vdrDropdownItem
-                    (click)="generatePdfByMake(items$)"
-                >
-                    PDF
-                </button>
-                <button
-                    type="button"
-                    vdrDropdownItem
-                    (click)="generateXl(items$)"
-                    
-                >
-                    EXCEL
-                </button>
-            </vdr-dropdown-menu>
+            <button type="button" vdrDropdownItem (click)="generateXl(items$)">
+              EXCEL
+            </button>
+          </vdr-dropdown-menu>
         </vdr-dropdown>
-        </vdr-ab-right>
+      </vdr-ab-right>
       <clr-spinner *ngIf="salesListIsLoading" clrMedium></clr-spinner>
-      </vdr-action-bar>
-  </vdr-page-block> 
-  
-    <div id="pdfContent"> 
-     <vdr-data-table-2
+    </vdr-action-bar>
+  </vdr-page-block>
+
+  <div id="pdfContent">
+    <vdr-data-table-2
       id="sales-list"
       [items]="items$ | async"
       [itemsPerPage]="itemsPerPage$ | async"
@@ -44,94 +39,97 @@
       [currentPage]="currentPage$ | async"
       [filters]="filters"
       (pageChange)="setPageNumber($event)"
-      (itemsPerPageChange)="setItemsPerPage($event)">
-
-    <vdr-bulk-action-menu
+      (itemsPerPageChange)="setItemsPerPage($event)"
+    >
+      <vdr-bulk-action-menu
         locationId="sales-list"
         [hostComponent]="this"
-        [selectionManager]="selectionManager"/>    
-    <vdr-dt2-search
+        [selectionManager]="selectionManager"
+      />
+      <vdr-dt2-search
         [searchTermControl]="searchTermControl"
-        searchTermPlaceholder="Filter by title"/>
-    
+        searchTermPlaceholder="Filter by title"
+      />
 
-      <vdr-dt2-column heading="id" >
-      <ng-template let-result="item">
-            {{ result.id }}
-    </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="Created AT" >
+      <vdr-dt2-column heading="id">
+        <ng-template let-result="item">
+          {{ result.id }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Created AT">
         <ng-template let-review="item">
           {{ review.createdAt | date }}
         </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="customer"  >
-      <ng-template let-result="item">
-        <a href="./customer/customers/{{result.customerId}}" *ngIf="result.customerId!=-1">
-          {{ result.shippingAddress.fullName }}
-      </a>
-      <span *ngIf="result.customerId==-1">
-          {{ result.shippingAddress.fullName }}
-      </span>
-      </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="code" >
-      <ng-template let-result="item">
-        <a href="./orders/{{result.id}}" *ngIf="result.orderId!=-1">
-          {{ result.code }}
-      </a>
-      <span *ngIf="result.orderId==-1">
-          {{ result.code }}
-      </span>
-    </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="state" >
-      <ng-template let-review="item">
-        {{review.state}}
-      </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="active" >
-    <ng-template let-review="item">
-      {{ review.active }}
-    </ng-template>
-   </vdr-dt2-column>
-    <vdr-dt2-column heading="order Place At" >
-        <ng-template let-review="item">
-         {{review.orderPlacedAt | date}}
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="customer">
+        <ng-template let-result="item">
+          <a
+            href="./customer/customers/{{ result.customerId }}"
+            *ngIf="result.customerId != -1"
+          >
+            {{ result.shippingAddress.fullName }}
+          </a>
+          <span *ngIf="result.customerId == -1">
+            {{ result.shippingAddress.fullName }}
+          </span>
         </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="subTotal" >
-        <ng-template let-review="item">
-          {{ review.subTotal/100 |number:'1.2-2'}} {{review.currencyCode}} 
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="code">
+        <ng-template let-result="item">
+          <a href="./orders/{{ result.id }}" *ngIf="result.orderId != -1">
+            {{ result.code }}
+          </a>
+          <span *ngIf="result.orderId == -1">
+            {{ result.code }}
+          </span>
         </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="subTotal With Tax" >
-      <ng-template let-review="item">
-            {{ review.subTotalWithTax/100 |number:'1.2-2'}} {{review.currencyCode}}
-    </ng-template>
-    </vdr-dt2-column>k
-    <vdr-dt2-column heading="shipping" >
-      <ng-template let-review="item">
-            {{ review.shipping/100}} {{review.currencyCode}}
-      
-    </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="Total" >
-      <ng-template let-review="item">
-            {{ review.shippingWithTax/100+review.subTotalWithTax/100 |number:'1.2-2'}} {{review.currencyCode}}
-    </ng-template>
-    </vdr-dt2-column>
-    <vdr-dt2-column heading="type" >
-      <ng-template let-review="item">
-            {{ review.type }}
-    </ng-template>
-    </vdr-dt2-column>
-         
-
-    
-  </vdr-data-table-2>
-</div>
-  
-
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="state">
+        <ng-template let-review="item">
+          {{ review.state }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="active">
+        <ng-template let-review="item">
+          {{ review.active }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="order Place At">
+        <ng-template let-review="item">
+          {{ review.orderPlacedAt | date }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="subTotal">
+        <ng-template let-review="item">
+          {{ review.subTotal / 100 | number: "1.2-2" }}
+          {{ review.currencyCode }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="subTotal With Tax">
+        <ng-template let-review="item">
+          {{ review.subTotalWithTax / 100 | number: "1.2-2" }}
+          {{ review.currencyCode }}
+        </ng-template> </vdr-dt2-column
+      >k
+      <vdr-dt2-column heading="shipping">
+        <ng-template let-review="item">
+          {{ review.shipping / 100 }} {{ review.currencyCode }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="Total">
+        <ng-template let-review="item">
+          {{
+            review.shippingWithTax / 100 + review.subTotalWithTax / 100
+              | number: "1.2-2"
+          }}
+          {{ review.currencyCode }}
+        </ng-template>
+      </vdr-dt2-column>
+      <vdr-dt2-column heading="type">
+        <ng-template let-review="item">
+          {{ review.type }}
+        </ng-template>
+      </vdr-dt2-column>
+    </vdr-data-table-2>
+  </div>
 </vdr-page-body>
-

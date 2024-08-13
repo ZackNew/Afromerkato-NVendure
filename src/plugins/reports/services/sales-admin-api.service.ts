@@ -21,12 +21,12 @@ export class SalesReportService {
     private userService: UserService,
     private channelService: ChannelService,
     private customerGroupService: CustomerGroupService,
-    private listQueryBuilder: ListQueryBuilder
+    private listQueryBuilder: ListQueryBuilder,
   ) {}
 
   async findAll(
     ctx: RequestContext,
-    options?: ListQueryOptions<Order>
+    options?: ListQueryOptions<Order>,
   ): Promise<PaginatedList<Order>> {
     try {
       if (!options?.filter?.state) {
@@ -36,7 +36,7 @@ export class SalesReportService {
             orderBy: { createdAt: "DESC" },
           })
           .andWhere(
-            "state = 'PaymentSettled' OR state = 'Shipped' OR state = 'Delivered'"
+            "state = 'PaymentSettled' OR state = 'Shipped' OR state = 'Delivered'",
           )
           .getManyAndCount()
           .then(([items, totalItems]) => ({ items, totalItems }));
