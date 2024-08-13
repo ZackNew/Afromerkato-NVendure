@@ -5,3 +5,5 @@ static/assets
 static/email/test-emails
 .env
 src/admin-ui
+.idea
+.vscode
