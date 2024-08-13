@@ -13,11 +13,11 @@ export class AMOrderCodeStrategy
   implements OrderCodeStrategy
 {
   generate(ctx: RequestContext): string {
-    let prefix = "AM";
+    const prefix = "AM";
     const alphanumericCode = super.generate(ctx).slice(0, 5);
     // Do magic here
     return `${prefix}-${dayjs(new Date()).format(
-      "DDMMYY"
+      "DDMMYY",
     )}-${alphanumericCode}`;
   }
 }

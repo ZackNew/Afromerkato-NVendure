@@ -17,12 +17,12 @@ export class RefundReportService {
     private connection: TransactionalConnection,
     private channelService: ChannelService,
     private readonly listQueryBuilder: ListQueryBuilder,
-    private userService: UserService
+    private userService: UserService,
   ) {}
 
   async findAll(
     ctx: RequestContext,
-    options?: ListQueryOptions<Refund>
+    options?: ListQueryOptions<Refund>,
   ): Promise<PaginatedList<Refund>> {
     const result = await this.listQueryBuilder
       .build(Refund, options, {

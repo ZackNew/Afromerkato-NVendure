@@ -1,7 +1,7 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const GET_COMPLETEDORDER_LIST = gql`
-  query getCompletedOrder($options:CompletedOrderListOptions) {
+  query getCompletedOrder($options: CompletedOrderListOptions) {
     getCompletedOrder(options: $options) {
       items {
         id
@@ -18,7 +18,7 @@ export const GET_COMPLETEDORDER_LIST = gql`
         customerId
         type
         currencyCode
-        shippingAddress{
+        shippingAddress {
           fullName
         }
       }
@@ -28,7 +28,7 @@ export const GET_COMPLETEDORDER_LIST = gql`
 `;
 
 export const GET_REFUND_LIST = gql`
-  query getRefundList($options:RefundListOptions) {
+  query getRefundList($options: RefundListOptions) {
     getRefundList(options: $options) {
       items {
         id
@@ -37,13 +37,12 @@ export const GET_REFUND_LIST = gql`
         items
         shipping
         adjustment
-        total 
+        total
         method
         reason
         state
         transactionId
         paymentId
-            
       }
       totalItems
     }
@@ -51,7 +50,7 @@ export const GET_REFUND_LIST = gql`
 `;
 
 export const GET_STOCK_LIST = gql`
-  query getStockList($options:StockNewListOptions) {
+  query getStockList($options: StockNewListOptions) {
     getStockList(options: $options) {
       items {
         id
@@ -69,4 +68,3 @@ export const GET_STOCK_LIST = gql`
     }
   }
 `;
-

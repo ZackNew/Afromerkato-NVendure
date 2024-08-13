@@ -1,88 +1,84 @@
+import gql from "graphql-tag";
+export const adminApiExtension = gql`
+  type ShippingAddress {
+    fullName: String
+  }
+  type CompletedOrder implements Node {
+    id: ID!
+    orderId: ID
+    createdAt: DateTime
+    updatedAt: DateTime
+    code: String
+    state: String
+    active: String
+    orderPlacedAt: DateTime
+    subTotal: String
+    subTotalWithTax: String
+    shipping: String
+    shippingWithTax: String
+    customerId: String
+    type: String
+    currencyCode: String
+    shippingAddress: ShippingAddress
+  }
 
-import gql from 'graphql-tag';
-export const adminApiExtension=gql`
+  type CompletedOrderList implements PaginatedList {
+    items: [CompletedOrder!]!
+    totalItems: Int!
+  }
 
-    type ShippingAddress{
-        fullName:String,
+  # # Generated at run-time by Vendure
+  input CompletedOrderListOptions
 
-    }
-    type CompletedOrder implements Node {
-        id:ID!
-        orderId: ID
-        createdAt:DateTime
-        updatedAt: DateTime
-        code: String
-        state: String
-        active: String
-        orderPlacedAt:DateTime
-        subTotal: String
-        subTotalWithTax: String
-        shipping: String
-        shippingWithTax: String
-        customerId: String
-        type: String
-        currencyCode:String
-        shippingAddress:ShippingAddress
-    }
+  type RefundNew implements Node {
+    id: ID!
+    createdAt: String
+    updatedAt: String
+    items: String
+    shipping: String
+    adjustment: String
+    total: String
+    method: String
+    reason: String
+    state: String
+    transactionId: String
+    paymentId: String
+  }
 
-type CompletedOrderList implements PaginatedList {
-  items: [CompletedOrder!]!
-  totalItems: Int!
-}
+  type RefundList implements PaginatedList {
+    items: [RefundNew!]!
+    totalItems: Int!
+  }
 
-# # Generated at run-time by Vendure
- input CompletedOrderListOptions
+  # Generated at run-time by Vendure
+  input RefundListOptions
 
- type RefundNew implements Node {
-        id: ID!
-        createdAt:String
-        updatedAt: String
-        items: String
-        shipping: String
-        adjustment: String
-        total: String 
-        method: String
-        reason: String
-        state: String
-        transactionId: String
-        paymentId: String
-        
-}
+  type StockNew implements Node {
+    id: ID!
+    createdAt: String
+    updatedAt: String
+    sku: String
+    enabled: String
+    price: String
+    priceIncludesTax: String
+    stock: String
+    closingStock: String
+    stockOnHand: String
+  }
 
-type RefundList implements PaginatedList {
-  items: [RefundNew!]!
-  totalItems: Int!
-}
+  type StockNewList implements PaginatedList {
+    items: [StockNew!]!
+    totalItems: Int!
+  }
 
-# Generated at run-time by Vendure
-input RefundListOptions
+  # Generated at run-time by Vendure
+  input StockNewListOptions
 
-type StockNew implements Node {
-        id: ID!
-        createdAt:String
-        updatedAt: String
-        sku:String
-        enabled:String
-        price:String
-        priceIncludesTax:String
-        stock:String
-        closingStock:String
-        stockOnHand:String
-}
-
-type StockNewList implements PaginatedList {
-  items: [StockNew!]!
-  totalItems: Int!
-}
-
-# Generated at run-time by Vendure
-input StockNewListOptions
-
-    extend type Query{
-        getRefundList(options: RefundListOptions):RefundList!
-        getCompletedOrder(options:CompletedOrderListOptions):CompletedOrderList!
-        getStockList(options:StockNewListOptions):StockNewList!
-    }
+  extend type Query {
+    getRefundList(options: RefundListOptions): RefundList!
+    getCompletedOrder(options: CompletedOrderListOptions): CompletedOrderList!
+    getStockList(options: StockNewListOptions): StockNewList!
+  }
 `;
 const refundReportAdminApiExtensions = gql`
   extend type Query {
