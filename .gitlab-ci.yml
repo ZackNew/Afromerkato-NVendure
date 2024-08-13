@@ -14,7 +14,7 @@ default:
       - $NPM_CACHE_FOLDER
 
 before_script:
-  - npm config set cache-folder $NPM_CACHE_FOLDER --global
+  - npm config set cache $NPM_CACHE_FOLDER --global
 
 install_dependencies:
   stage: install
