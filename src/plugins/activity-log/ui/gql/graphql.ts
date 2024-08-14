@@ -7177,28 +7177,233 @@ export type ZoneSortParameter = {
   updatedAt?: InputMaybe<SortOrder>;
 };
 
-export type GetCompletedOrderQueryVariables = Exact<{
-  options?: InputMaybe<CompletedOrderListOptions>;
+export type ActivityLogFragmentFragment = { __typename?: 'ActivityLog', id: string, description: string, latest: boolean, dateTime?: any | null };
+
+export type AdministratorFragmentFragment = { __typename?: 'Administrator', id: string, createdAt: any, updatedAt: any, firstName: string, lastName: string, emailAddress: string, customFields?: any | null, user: { __typename?: 'User', id: string, createdAt: any, updatedAt: any, identifier: string, verified: boolean, lastLogin?: any | null, customFields?: any | null } };
+
+export type GetProductActivityLogsQueryVariables = Exact<{
+  filter?: InputMaybe<ActivityLogFilter>;
 }>;
 
 
-export type GetCompletedOrderQuery = { __typename?: 'Query', getCompletedOrder: { __typename?: 'CompletedOrderList', totalItems: number, items: Array<{ __typename?: 'CompletedOrder', id: string, createdAt?: any | null, updatedAt?: any | null, code?: string | null, state?: string | null, active?: string | null, orderPlacedAt?: any | null, subTotal?: string | null, subTotalWithTax?: string | null, shipping?: string | null, shippingWithTax?: string | null, customerId?: string | null, type?: string | null, currencyCode?: string | null, shippingAddress?: { __typename?: 'ShippingAddress', fullName?: string | null } | null }> } };
+export type GetProductActivityLogsQuery = { __typename?: 'Query', productActivityLogs?: Array<{ __typename?: 'ActivityLog', id: string, description: string, latest: boolean, dateTime?: any | null } | null> | null };
 
-export type GetRefundListQueryVariables = Exact<{
-  options?: InputMaybe<RefundListOptions>;
+export type RevertProductChangesMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
 }>;
 
 
-export type GetRefundListQuery = { __typename?: 'Query', getRefundList: { __typename?: 'RefundList', totalItems: number, items: Array<{ __typename?: 'RefundNew', id: string, createdAt?: string | null, updatedAt?: string | null, items?: string | null, shipping?: string | null, adjustment?: string | null, total?: string | null, method?: string | null, reason?: string | null, state?: string | null, transactionId?: string | null, paymentId?: string | null }> } };
+export type RevertProductChangesMutation = { __typename?: 'Mutation', revertProductChanges?: boolean | null };
 
-export type GetStockListQueryVariables = Exact<{
-  options?: InputMaybe<StockNewListOptions>;
+export type DeleteProductActivityLogMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
 }>;
 
 
-export type GetStockListQuery = { __typename?: 'Query', getStockList: { __typename?: 'StockNewList', totalItems: number, items: Array<{ __typename?: 'StockNew', id: string, createdAt?: string | null, updatedAt?: string | null, sku?: string | null, enabled?: string | null, price?: string | null, priceIncludesTax?: string | null, stock?: string | null, closingStock?: string | null, stockOnHand?: string | null }> } };
+export type DeleteProductActivityLogMutation = { __typename?: 'Mutation', deleteProductActivityLog?: boolean | null };
+
+export type GetOrderRelatedActivityLogsQueryVariables = Exact<{
+  filter?: InputMaybe<ActivityLogFilter>;
+}>;
 
 
-export const GetCompletedOrderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCompletedOrder"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"options"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"CompletedOrderListOptions"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCompletedOrder"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"options"},"value":{"kind":"Variable","name":{"kind":"Name","value":"options"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"state"}},{"kind":"Field","name":{"kind":"Name","value":"active"}},{"kind":"Field","name":{"kind":"Name","value":"orderPlacedAt"}},{"kind":"Field","name":{"kind":"Name","value":"subTotal"}},{"kind":"Field","name":{"kind":"Name","value":"subTotalWithTax"}},{"kind":"Field","name":{"kind":"Name","value":"shipping"}},{"kind":"Field","name":{"kind":"Name","value":"shippingWithTax"}},{"kind":"Field","name":{"kind":"Name","value":"customerId"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"currencyCode"}},{"kind":"Field","name":{"kind":"Name","value":"shippingAddress"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fullName"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"totalItems"}}]}}]}}]} as unknown as DocumentNode<GetCompletedOrderQuery, GetCompletedOrderQueryVariables>;
-export const GetRefundListDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getRefundList"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"options"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"RefundListOptions"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getRefundList"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"options"},"value":{"kind":"Variable","name":{"kind":"Name","value":"options"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"items"}},{"kind":"Field","name":{"kind":"Name","value":"shipping"}},{"kind":"Field","name":{"kind":"Name","value":"adjustment"}},{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","name":{"kind":"Name","value":"method"}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"state"}},{"kind":"Field","name":{"kind":"Name","value":"transactionId"}},{"kind":"Field","name":{"kind":"Name","value":"paymentId"}}]}},{"kind":"Field","name":{"kind":"Name","value":"totalItems"}}]}}]}}]} as unknown as DocumentNode<GetRefundListQuery, GetRefundListQueryVariables>;
-export const GetStockListDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getStockList"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"options"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"StockNewListOptions"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getStockList"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"options"},"value":{"kind":"Variable","name":{"kind":"Name","value":"options"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"sku"}},{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"priceIncludesTax"}},{"kind":"Field","name":{"kind":"Name","value":"stock"}},{"kind":"Field","name":{"kind":"Name","value":"closingStock"}},{"kind":"Field","name":{"kind":"Name","value":"stockOnHand"}}]}},{"kind":"Field","name":{"kind":"Name","value":"totalItems"}}]}}]}}]} as unknown as DocumentNode<GetStockListQuery, GetStockListQueryVariables>;
+export type GetOrderRelatedActivityLogsQuery = { __typename?: 'Query', orderRelatedActivityLogs?: Array<{ __typename?: 'ActivityLog', id: string, description: string, latest: boolean, dateTime?: any | null } | null> | null };
+
+export type RevertOrderRelatedChangesMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type RevertOrderRelatedChangesMutation = { __typename?: 'Mutation', revertOrderRelatedChanges?: boolean | null };
+
+export type DeleteOrderRelatedActivityLogMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DeleteOrderRelatedActivityLogMutation = { __typename?: 'Mutation', deleteOrderRelatedActivityLog?: boolean | null };
+
+export type GetCollectionActivityLogsQueryVariables = Exact<{
+  filter?: InputMaybe<ActivityLogFilter>;
+}>;
+
+
+export type GetCollectionActivityLogsQuery = { __typename?: 'Query', collectionActivityLogs?: Array<{ __typename?: 'ActivityLog', id: string, description: string, latest: boolean, dateTime?: any | null } | null> | null };
+
+export type RevertCollectionChangesMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type RevertCollectionChangesMutation = { __typename?: 'Mutation', revertCollectionChanges?: boolean | null };
+
+export type DeleteCollectionActivityLogMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DeleteCollectionActivityLogMutation = { __typename?: 'Mutation', deleteCollectionActivityLog?: boolean | null };
+
+export type GetIndustryActivityLogsQueryVariables = Exact<{
+  filter?: InputMaybe<ActivityLogFilter>;
+}>;
+
+
+export type GetIndustryActivityLogsQuery = { __typename?: 'Query', industryActivityLogs?: Array<{ __typename?: 'ActivityLog', id: string, description: string, latest: boolean, dateTime?: any | null } | null> | null };
+
+export type RevertIndustryChangesMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type RevertIndustryChangesMutation = { __typename?: 'Mutation', revertIndustryChanges?: boolean | null };
+
+export type DeleteIndustryActivityLogMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DeleteIndustryActivityLogMutation = { __typename?: 'Mutation', deleteIndustryActivityLog?: boolean | null };
+
+export type GetBrandActivityLogsQueryVariables = Exact<{
+  filter?: InputMaybe<ActivityLogFilter>;
+}>;
+
+
+export type GetBrandActivityLogsQuery = { __typename?: 'Query', brandActivityLogs?: Array<{ __typename?: 'ActivityLog', id: string, description: string, latest: boolean, dateTime?: any | null } | null> | null };
+
+export type RevertBrandChangesMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type RevertBrandChangesMutation = { __typename?: 'Mutation', revertBrandChanges?: boolean | null };
+
+export type DeleteBrandActivityLogMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DeleteBrandActivityLogMutation = { __typename?: 'Mutation', deleteBrandActivityLog?: boolean | null };
+
+export type GetShippingMethodActivityLogsQueryVariables = Exact<{
+  filter?: InputMaybe<ActivityLogFilter>;
+}>;
+
+
+export type GetShippingMethodActivityLogsQuery = { __typename?: 'Query', shippingMethodActivityLogs?: Array<{ __typename?: 'ActivityLog', id: string, description: string, latest: boolean, dateTime?: any | null } | null> | null };
+
+export type RevertShippingMethodChangesMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type RevertShippingMethodChangesMutation = { __typename?: 'Mutation', revertShippingMethodChanges?: boolean | null };
+
+export type DeleteShippingMethodActivityLogMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DeleteShippingMethodActivityLogMutation = { __typename?: 'Mutation', deleteShippingMethodActivityLog?: boolean | null };
+
+export type GetPaymentMethodActivityLogsQueryVariables = Exact<{
+  filter?: InputMaybe<ActivityLogFilter>;
+}>;
+
+
+export type GetPaymentMethodActivityLogsQuery = { __typename?: 'Query', paymentMethodActivityLogs?: Array<{ __typename?: 'ActivityLog', id: string, description: string, latest: boolean, dateTime?: any | null } | null> | null };
+
+export type RevertPaymentMethodChangesMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type RevertPaymentMethodChangesMutation = { __typename?: 'Mutation', revertPaymentMethodChanges?: boolean | null };
+
+export type DeletePaymentMethodActivityLogMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DeletePaymentMethodActivityLogMutation = { __typename?: 'Mutation', deletePaymentMethodActivityLog?: boolean | null };
+
+export type GetCustomerRelatedActivityLogsQueryVariables = Exact<{
+  filter?: InputMaybe<ActivityLogFilter>;
+}>;
+
+
+export type GetCustomerRelatedActivityLogsQuery = { __typename?: 'Query', customerRelatedActivityLogs?: Array<{ __typename?: 'ActivityLog', id: string, description: string, latest: boolean, dateTime?: any | null } | null> | null };
+
+export type RevertCustomerRelatedChangesMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type RevertCustomerRelatedChangesMutation = { __typename?: 'Mutation', revertCustomerRelatedChanges?: boolean | null };
+
+export type DeleteCustomerRelatedActivityLogMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DeleteCustomerRelatedActivityLogMutation = { __typename?: 'Mutation', deleteCustomerRelatedActivityLog?: boolean | null };
+
+export type GetPriceListActivityLogsQueryVariables = Exact<{
+  filter?: InputMaybe<ActivityLogFilter>;
+}>;
+
+
+export type GetPriceListActivityLogsQuery = { __typename?: 'Query', priceListActivityLogs?: Array<{ __typename?: 'ActivityLog', id: string, description: string, latest: boolean, dateTime?: any | null } | null> | null };
+
+export type RevertPriceListChangesMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type RevertPriceListChangesMutation = { __typename?: 'Mutation', revertPriceListChanges?: boolean | null };
+
+export type DeletePriceListActivityLogMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DeletePriceListActivityLogMutation = { __typename?: 'Mutation', deletePriceListActivityLog?: boolean | null };
+
+export type GetAdministratorsQueryVariables = Exact<{
+  options?: InputMaybe<AdministratorListOptions>;
+}>;
+
+
+export type GetAdministratorsQuery = { __typename?: 'Query', administrators: { __typename?: 'AdministratorList', totalItems: number, items: Array<{ __typename?: 'Administrator', id: string, createdAt: any, updatedAt: any, firstName: string, lastName: string, emailAddress: string, customFields?: any | null, user: { __typename?: 'User', id: string, createdAt: any, updatedAt: any, identifier: string, verified: boolean, lastLogin?: any | null, customFields?: any | null } }> } };
+
+export const ActivityLogFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ActivityLogFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"latest"}},{"kind":"Field","name":{"kind":"Name","value":"dateTime"}}]}}]} as unknown as DocumentNode<ActivityLogFragmentFragment, unknown>;
+export const AdministratorFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"AdministratorFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Administrator"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"emailAddress"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"identifier"}},{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"lastLogin"}},{"kind":"Field","name":{"kind":"Name","value":"customFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customFields"}}]}}]} as unknown as DocumentNode<AdministratorFragmentFragment, unknown>;
+export const GetProductActivityLogsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetProductActivityLogs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLogFilter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"productActivityLogs"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ActivityLogFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ActivityLogFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"latest"}},{"kind":"Field","name":{"kind":"Name","value":"dateTime"}}]}}]} as unknown as DocumentNode<GetProductActivityLogsQuery, GetProductActivityLogsQueryVariables>;
+export const RevertProductChangesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RevertProductChanges"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"revertProductChanges"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<RevertProductChangesMutation, RevertProductChangesMutationVariables>;
+export const DeleteProductActivityLogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteProductActivityLog"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteProductActivityLog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<DeleteProductActivityLogMutation, DeleteProductActivityLogMutationVariables>;
+export const GetOrderRelatedActivityLogsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetOrderRelatedActivityLogs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLogFilter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"orderRelatedActivityLogs"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ActivityLogFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ActivityLogFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"latest"}},{"kind":"Field","name":{"kind":"Name","value":"dateTime"}}]}}]} as unknown as DocumentNode<GetOrderRelatedActivityLogsQuery, GetOrderRelatedActivityLogsQueryVariables>;
+export const RevertOrderRelatedChangesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RevertOrderRelatedChanges"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"revertOrderRelatedChanges"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<RevertOrderRelatedChangesMutation, RevertOrderRelatedChangesMutationVariables>;
+export const DeleteOrderRelatedActivityLogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteOrderRelatedActivityLog"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteOrderRelatedActivityLog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<DeleteOrderRelatedActivityLogMutation, DeleteOrderRelatedActivityLogMutationVariables>;
+export const GetCollectionActivityLogsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCollectionActivityLogs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLogFilter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"collectionActivityLogs"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ActivityLogFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ActivityLogFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"latest"}},{"kind":"Field","name":{"kind":"Name","value":"dateTime"}}]}}]} as unknown as DocumentNode<GetCollectionActivityLogsQuery, GetCollectionActivityLogsQueryVariables>;
+export const RevertCollectionChangesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RevertCollectionChanges"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"revertCollectionChanges"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<RevertCollectionChangesMutation, RevertCollectionChangesMutationVariables>;
+export const DeleteCollectionActivityLogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteCollectionActivityLog"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteCollectionActivityLog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<DeleteCollectionActivityLogMutation, DeleteCollectionActivityLogMutationVariables>;
+export const GetIndustryActivityLogsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetIndustryActivityLogs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLogFilter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"industryActivityLogs"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ActivityLogFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ActivityLogFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"latest"}},{"kind":"Field","name":{"kind":"Name","value":"dateTime"}}]}}]} as unknown as DocumentNode<GetIndustryActivityLogsQuery, GetIndustryActivityLogsQueryVariables>;
+export const RevertIndustryChangesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RevertIndustryChanges"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"revertIndustryChanges"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<RevertIndustryChangesMutation, RevertIndustryChangesMutationVariables>;
+export const DeleteIndustryActivityLogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteIndustryActivityLog"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteIndustryActivityLog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<DeleteIndustryActivityLogMutation, DeleteIndustryActivityLogMutationVariables>;
+export const GetBrandActivityLogsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetBrandActivityLogs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLogFilter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brandActivityLogs"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ActivityLogFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ActivityLogFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"latest"}},{"kind":"Field","name":{"kind":"Name","value":"dateTime"}}]}}]} as unknown as DocumentNode<GetBrandActivityLogsQuery, GetBrandActivityLogsQueryVariables>;
+export const RevertBrandChangesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RevertBrandChanges"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"revertBrandChanges"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<RevertBrandChangesMutation, RevertBrandChangesMutationVariables>;
+export const DeleteBrandActivityLogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteBrandActivityLog"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteBrandActivityLog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<DeleteBrandActivityLogMutation, DeleteBrandActivityLogMutationVariables>;
+export const GetShippingMethodActivityLogsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetShippingMethodActivityLogs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLogFilter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"shippingMethodActivityLogs"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ActivityLogFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ActivityLogFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"latest"}},{"kind":"Field","name":{"kind":"Name","value":"dateTime"}}]}}]} as unknown as DocumentNode<GetShippingMethodActivityLogsQuery, GetShippingMethodActivityLogsQueryVariables>;
+export const RevertShippingMethodChangesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RevertShippingMethodChanges"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"revertShippingMethodChanges"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<RevertShippingMethodChangesMutation, RevertShippingMethodChangesMutationVariables>;
+export const DeleteShippingMethodActivityLogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteShippingMethodActivityLog"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteShippingMethodActivityLog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<DeleteShippingMethodActivityLogMutation, DeleteShippingMethodActivityLogMutationVariables>;
+export const GetPaymentMethodActivityLogsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPaymentMethodActivityLogs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLogFilter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"paymentMethodActivityLogs"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ActivityLogFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ActivityLogFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"latest"}},{"kind":"Field","name":{"kind":"Name","value":"dateTime"}}]}}]} as unknown as DocumentNode<GetPaymentMethodActivityLogsQuery, GetPaymentMethodActivityLogsQueryVariables>;
+export const RevertPaymentMethodChangesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RevertPaymentMethodChanges"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"revertPaymentMethodChanges"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<RevertPaymentMethodChangesMutation, RevertPaymentMethodChangesMutationVariables>;
+export const DeletePaymentMethodActivityLogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeletePaymentMethodActivityLog"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deletePaymentMethodActivityLog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<DeletePaymentMethodActivityLogMutation, DeletePaymentMethodActivityLogMutationVariables>;
+export const GetCustomerRelatedActivityLogsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCustomerRelatedActivityLogs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLogFilter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customerRelatedActivityLogs"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ActivityLogFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ActivityLogFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"latest"}},{"kind":"Field","name":{"kind":"Name","value":"dateTime"}}]}}]} as unknown as DocumentNode<GetCustomerRelatedActivityLogsQuery, GetCustomerRelatedActivityLogsQueryVariables>;
+export const RevertCustomerRelatedChangesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RevertCustomerRelatedChanges"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"revertCustomerRelatedChanges"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<RevertCustomerRelatedChangesMutation, RevertCustomerRelatedChangesMutationVariables>;
+export const DeleteCustomerRelatedActivityLogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteCustomerRelatedActivityLog"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteCustomerRelatedActivityLog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<DeleteCustomerRelatedActivityLogMutation, DeleteCustomerRelatedActivityLogMutationVariables>;
+export const GetPriceListActivityLogsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPriceListActivityLogs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLogFilter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"priceListActivityLogs"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ActivityLogFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ActivityLogFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ActivityLog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"latest"}},{"kind":"Field","name":{"kind":"Name","value":"dateTime"}}]}}]} as unknown as DocumentNode<GetPriceListActivityLogsQuery, GetPriceListActivityLogsQueryVariables>;
+export const RevertPriceListChangesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RevertPriceListChanges"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"revertPriceListChanges"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<RevertPriceListChangesMutation, RevertPriceListChangesMutationVariables>;
+export const DeletePriceListActivityLogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeletePriceListActivityLog"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deletePriceListActivityLog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<DeletePriceListActivityLogMutation, DeletePriceListActivityLogMutationVariables>;
+export const GetAdministratorsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAdministrators"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"options"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"AdministratorListOptions"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"administrators"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"options"},"value":{"kind":"Variable","name":{"kind":"Name","value":"options"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"AdministratorFragment"}}]}},{"kind":"Field","name":{"kind":"Name","value":"totalItems"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"AdministratorFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Administrator"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"emailAddress"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"identifier"}},{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"lastLogin"}},{"kind":"Field","name":{"kind":"Name","value":"customFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customFields"}}]}}]} as unknown as DocumentNode<GetAdministratorsQuery, GetAdministratorsQueryVariables>;
