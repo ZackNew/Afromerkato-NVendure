@@ -30,12 +30,10 @@ export class CollectionActivityLogService
   extends ActivityLogService<CollectionEvent | CollectionModificationEvent>
   implements OnApplicationBootstrap
 {
-
-
   async deleteActivityLog(ctx: RequestContext, id: ID): Promise<Boolean> {
     let repo = this.transactionalConnection.getRepository(
       ctx,
-      CollectionActivityLogEntity
+      CollectionActivityLogEntity,
     );
     await repo.softDelete(id);
     return true;
@@ -45,7 +43,7 @@ export class CollectionActivityLogService
     private eventBus: EventBus,
     private processContext: ProcessContext,
     private productVariantService: ProductVariantService,
-    private transactionalConnection: TransactionalConnection
+    private transactionalConnection: TransactionalConnection,
   ) {
     super();
   }
@@ -54,13 +52,13 @@ export class CollectionActivityLogService
   async registerLog(event: CollectionEvent | CollectionModificationEvent) {
     let repo = this.transactionalConnection.getRepository(
       event.ctx,
-      CollectionActivityLogEntity
+      CollectionActivityLogEntity,
     );
     let log = new CollectionActivityLogEntity();
     if (event.ctx.apiType === "admin") {
       const adminRepo = this.transactionalConnection.getRepository(
         event.ctx,
-        Administrator
+        Administrator,
       );
       const currentAdmin = await adminRepo.findOne({
         where: { user: { id: event.ctx.activeUserId } },
@@ -82,8 +80,8 @@ export class CollectionActivityLogService
                               currentAdmin!.id
                             }">
                                 ${currentAdmin!.firstName} ${
-              currentAdmin!.lastName
-            }
+                                  currentAdmin!.lastName
+                                }
                             </a>
                         `;
           } else {
@@ -94,8 +92,8 @@ export class CollectionActivityLogService
                               currentAdmin!.id
                             }">
                                 ${currentAdmin!.firstName} ${
-              currentAdmin!.lastName
-            }
+                                  currentAdmin!.lastName
+                                }
                             </a>
                         `;
           }
@@ -115,10 +113,10 @@ export class CollectionActivityLogService
         }
       } else {
         log.type = "collection_modification";
-        log.entity=null!;
+        log.entity = null!;
         log.variants = await this.productVariantService.findByIds(
           event.ctx,
-          event.productVariantIds
+          event.productVariantIds,
         );
         log.change = { productVariantIds: event.productVariantIds };
         log.description = `
@@ -147,7 +145,7 @@ export class CollectionActivityLogService
 
   async activityLogs(
     ctx: RequestContext,
-    filter?: ActivityLogFilter
+    filter?: ActivityLogFilter,
   ): Promise<ActivityLog[]> {
     let allLogsSelectQueryBuilder = this.transactionalConnection
       .getRepository(ctx, CollectionActivityLogEntity)
@@ -157,7 +155,7 @@ export class CollectionActivityLogService
       .orderBy("log.createdAt", "DESC");
     allLogsSelectQueryBuilder = this.addFilterToQueryBuilder(
       allLogsSelectQueryBuilder,
-      filter
+      filter,
     );
     const allLogs = await allLogsSelectQueryBuilder.getMany();
     let readableLogs: ActivityLog[] = [];

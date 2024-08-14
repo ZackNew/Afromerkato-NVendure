@@ -1,5 +1,5 @@
-import gql from 'graphql-tag';
-import { ADMINISTRATOR_FRAGMENT } from '@vendure/admin-ui/core';
+import gql from "graphql-tag";
+import { ADMINISTRATOR_FRAGMENT } from "@vendure/admin-ui/core";
 
 export const ACTIVITY_LOG_FRAGMENT = gql`
   fragment ActivityLogFragment on ActivityLog {
@@ -12,21 +12,21 @@ export const ACTIVITY_LOG_FRAGMENT = gql`
 export const ADMINSTRATOR_FRAGMENT = gql`
   fragment AdministratorFragment on Administrator {
     id
-createdAt
-updatedAt
-firstName
-lastName
-emailAddress
-user{
-id
-createdAt
-updatedAt
-identifier
-verified
-lastLogin
-customFields
-}
-customFields
+    createdAt
+    updatedAt
+    firstName
+    lastName
+    emailAddress
+    user {
+      id
+      createdAt
+      updatedAt
+      identifier
+      verified
+      lastLogin
+      customFields
+    }
+    customFields
   }
 `;
 

@@ -15,7 +15,7 @@ export class ActivityLogActions {
     private dataService: Apollo,
     private logQueryDocumentNode: DocumentNode,
     private revertChangesDocumentNode: DocumentNode,
-    private deleteLogDocumentNode: DocumentNode
+    private deleteLogDocumentNode: DocumentNode,
   ) {}
 
   setPage(event: number) {

@@ -59,34 +59,37 @@ export class AdminListComponent implements OnInit, OnDestroy {
   private refresh$ = new BehaviorSubject<boolean>(true);
   private destroy$ = new Subject<void>();
 
-  constructor(private router: Router, private dataService: DataService) {}
+  constructor(
+    private router: Router,
+    private dataService: DataService,
+  ) {}
 
   ngOnInit() {
     this.membersCurrentPage$ = this.route.paramMap.pipe(
       map((qpm) => qpm.get("membersPage")),
       map((page) => (!page ? 1 : +page)),
       startWith(1),
-      distinctUntilChanged()
+      distinctUntilChanged(),
     );
 
     this.membersItemsPerPage$ = this.route.paramMap.pipe(
       map((qpm) => qpm.get("membersPerPage")),
       map((perPage) => (!perPage ? 10 : +perPage)),
       startWith(10),
-      distinctUntilChanged()
+      distinctUntilChanged(),
     );
 
     const filterTerm$ = this.filterTermControl.valueChanges.pipe(
       debounceTime(250),
       tap(() => this.setContentsPageNumber(1)),
-      startWith("")
+      startWith(""),
     );
 
     combineLatest(
       this.membersCurrentPage$,
       this.membersItemsPerPage$,
       filterTerm$,
-      this.refresh$
+      this.refresh$,
     )
       .pipe(takeUntil(this.destroy$))
       .subscribe(([currentPage, itemsPerPage, filterTerm]) => {
@@ -125,7 +128,7 @@ export class AdminListComponent implements OnInit, OnDestroy {
       {
         relativeTo: this.route,
         queryParamsHandling: "merge",
-      }
+      },
     );
   }
 
@@ -148,7 +151,7 @@ export class AdminListComponent implements OnInit, OnDestroy {
   toggleSelectMember(member: ZoneMember) {
     if (this.selectedMemberIds.includes(member.id)) {
       this.selectionChange.emit(
-        this.selectedMemberIds.filter((id) => id !== member.id)
+        this.selectedMemberIds.filter((id) => id !== member.id),
       );
     } else {
       this.selectionChange.emit([...this.selectedMemberIds, member.id]);
