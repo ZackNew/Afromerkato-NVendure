@@ -45,6 +45,14 @@ const config: CodegenConfig = {
               fragmentMasking: false,
           },
       },
+      './src/plugins/quote/gql/generated.ts': { plugins: ['typescript'] },
+      './src/plugins/quote/ui/gql/': {
+          preset: 'client',
+          documents: './src/plugins/quote/ui/**/*.ts',
+          presetConfig: {
+              fragmentMasking: false,
+          },
+      },
 },
 };
 

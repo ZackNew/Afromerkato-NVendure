@@ -2926,6 +2926,7 @@ export type Mutation = {
   deletePromotions: Array<DeletionResponse>;
   /** Delete a Province */
   deleteProvince: DeletionResponse;
+  deleteQuote?: Maybe<QuoteType>;
   /** Delete an existing Role */
   deleteRole: DeletionResponse;
   /** Delete multiple Roles */
@@ -3096,6 +3097,7 @@ export type Mutation = {
   updateTaxRate: TaxRate;
   /** Update an existing Zone */
   updateZone: Zone;
+  writeQuote: QuoteType;
 };
 
 
@@ -3555,6 +3557,11 @@ export type MutationDeletePromotionsArgs = {
 
 
 export type MutationDeleteProvinceArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteQuoteArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -4024,6 +4031,11 @@ export type MutationUpdateTaxRateArgs = {
 
 export type MutationUpdateZoneArgs = {
   input: UpdateZoneInput;
+};
+
+
+export type MutationWriteQuoteArgs = {
+  args: QuoteInputType;
 };
 
 export type NativeAuthInput = {
@@ -5362,6 +5374,10 @@ export type Query = {
   facets: FacetList;
   fulfillmentHandlers: Array<ConfigurableOperationDefinition>;
   getCompletedOrder: CompletedOrderList;
+  getQueryOf?: Maybe<Array<Maybe<QuoteType>>>;
+  getQuote?: Maybe<QuoteType>;
+  getQuoteResponseLink: Scalars['String']['output'];
+  getQuotesForCustomer?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   getRefundList: RefundList;
   getStockList: StockNewList;
   globalSettings: GlobalSettings;
@@ -5405,6 +5421,7 @@ export type Query = {
   promotions: PromotionList;
   province?: Maybe<Province>;
   provinces: ProvinceList;
+  quotes: QuoteList;
   role?: Maybe<Role>;
   roles: RoleList;
   search: SearchResponse;
@@ -5538,6 +5555,26 @@ export type QueryFacetsArgs = {
 
 export type QueryGetCompletedOrderArgs = {
   options?: InputMaybe<CompletedOrderListOptions>;
+};
+
+
+export type QueryGetQueryOfArgs = {
+  email: Scalars['String']['input'];
+};
+
+
+export type QueryGetQuoteArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryGetQuoteResponseLinkArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryGetQuotesForCustomerArgs = {
+  email: Scalars['String']['input'];
 };
 
 
@@ -5689,6 +5726,11 @@ export type QueryProvincesArgs = {
 };
 
 
+export type QueryQuotesArgs = {
+  options?: InputMaybe<QuoteListOptions>;
+};
+
+
 export type QueryRoleArgs = {
   id: Scalars['ID']['input'];
 };
@@ -5786,6 +5828,78 @@ export type QueryZoneArgs = {
 
 export type QueryZonesArgs = {
   options?: InputMaybe<ZoneListOptions>;
+};
+
+export type Quote = Node & {
+  __typename?: 'Quote';
+  assetUrl?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  forProducts?: Maybe<Array<Maybe<ProductVariant>>>;
+  fromPhone: Scalars['String']['output'];
+  fullName: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  userEmail: Scalars['String']['output'];
+  uuid?: Maybe<Scalars['String']['output']>;
+};
+
+export type QuoteFilterParameter = {
+  _and?: InputMaybe<Array<QuoteFilterParameter>>;
+  _or?: InputMaybe<Array<QuoteFilterParameter>>;
+  assetUrl?: InputMaybe<StringOperators>;
+  createdAt?: InputMaybe<DateOperators>;
+  fromPhone?: InputMaybe<StringOperators>;
+  fullName?: InputMaybe<StringOperators>;
+  id?: InputMaybe<IdOperators>;
+  userEmail?: InputMaybe<StringOperators>;
+  uuid?: InputMaybe<StringOperators>;
+};
+
+export type QuoteInputType = {
+  fromPhone: Scalars['String']['input'];
+  fullName?: InputMaybe<Scalars['String']['input']>;
+  productIds?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  userEmail?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type QuoteList = PaginatedList & {
+  __typename?: 'QuoteList';
+  items: Array<Quote>;
+  totalItems: Scalars['Int']['output'];
+};
+
+export type QuoteListOptions = {
+  /** Allows the results to be filtered */
+  filter?: InputMaybe<QuoteFilterParameter>;
+  /** Specifies whether multiple top-level "filter" fields should be combined with a logical AND or OR operation. Defaults to AND. */
+  filterOperator?: InputMaybe<LogicalOperator>;
+  /** Skips the first n results, for use in pagination */
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  /** Specifies which properties to sort the results by */
+  sort?: InputMaybe<QuoteSortParameter>;
+  /** Takes n results, for use in pagination */
+  take?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type QuoteSortParameter = {
+  assetUrl?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  fromPhone?: InputMaybe<SortOrder>;
+  fullName?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  userEmail?: InputMaybe<SortOrder>;
+  uuid?: InputMaybe<SortOrder>;
+};
+
+export type QuoteType = {
+  __typename?: 'QuoteType';
+  assetUrl?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  forProducts?: Maybe<Array<Maybe<ProductVariant>>>;
+  fromPhone: Scalars['String']['output'];
+  fullName: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  userEmail: Scalars['String']['output'];
+  uuid?: Maybe<Scalars['String']['output']>;
 };
 
 export type Refund = Node & {
