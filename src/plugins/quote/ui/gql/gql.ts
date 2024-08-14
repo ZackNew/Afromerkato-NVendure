@@ -1,6 +1,6 @@
 /* eslint-disable */
-import * as types from './graphql';
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+import * as types from "./graphql";
+import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 
 /**
  * Map of all GraphQL operations in the project.
@@ -13,8 +13,10 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  mutation DeleteQuote($id:ID!){\n    deleteQuote(id: $id){\n      assetUrl\n    }\n  }\n": types.DeleteQuoteDocument,
-    "\nquery Quotes($options:QuoteListOptions) {\n  quotes(options: $options) {\n      items {\n        id\n        createdAt\n        fullName\n        userEmail\n        fromPhone\n        uuid\n        forProducts{\n          productId\n          id\n          createdAt\n          sku\n          name\n          featuredAsset{\n           preview\n         }\n         assets{\n          preview\n         }\n          \n        }\n        assetUrl\n      }\n      totalItems\n    }\n  }\n": types.QuotesDocument,
+  "\n  mutation DeleteQuote($id:ID!){\n    deleteQuote(id: $id){\n      assetUrl\n    }\n  }\n":
+    types.DeleteQuoteDocument,
+  "\nquery Quotes($options:QuoteListOptions) {\n  quotes(options: $options) {\n      items {\n        id\n        createdAt\n        fullName\n        userEmail\n        fromPhone\n        uuid\n        forProducts{\n          productId\n          id\n          createdAt\n          sku\n          name\n          featuredAsset{\n           preview\n         }\n         assets{\n          preview\n         }\n          \n        }\n        assetUrl\n      }\n      totalItems\n    }\n  }\n":
+    types.QuotesDocument,
 };
 
 /**
@@ -34,14 +36,19 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  mutation DeleteQuote($id:ID!){\n    deleteQuote(id: $id){\n      assetUrl\n    }\n  }\n"): (typeof documents)["\n  mutation DeleteQuote($id:ID!){\n    deleteQuote(id: $id){\n      assetUrl\n    }\n  }\n"];
+export function graphql(
+  source: "\n  mutation DeleteQuote($id:ID!){\n    deleteQuote(id: $id){\n      assetUrl\n    }\n  }\n",
+): (typeof documents)["\n  mutation DeleteQuote($id:ID!){\n    deleteQuote(id: $id){\n      assetUrl\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\nquery Quotes($options:QuoteListOptions) {\n  quotes(options: $options) {\n      items {\n        id\n        createdAt\n        fullName\n        userEmail\n        fromPhone\n        uuid\n        forProducts{\n          productId\n          id\n          createdAt\n          sku\n          name\n          featuredAsset{\n           preview\n         }\n         assets{\n          preview\n         }\n          \n        }\n        assetUrl\n      }\n      totalItems\n    }\n  }\n"): (typeof documents)["\nquery Quotes($options:QuoteListOptions) {\n  quotes(options: $options) {\n      items {\n        id\n        createdAt\n        fullName\n        userEmail\n        fromPhone\n        uuid\n        forProducts{\n          productId\n          id\n          createdAt\n          sku\n          name\n          featuredAsset{\n           preview\n         }\n         assets{\n          preview\n         }\n          \n        }\n        assetUrl\n      }\n      totalItems\n    }\n  }\n"];
+export function graphql(
+  source: "\nquery Quotes($options:QuoteListOptions) {\n  quotes(options: $options) {\n      items {\n        id\n        createdAt\n        fullName\n        userEmail\n        fromPhone\n        uuid\n        forProducts{\n          productId\n          id\n          createdAt\n          sku\n          name\n          featuredAsset{\n           preview\n         }\n         assets{\n          preview\n         }\n          \n        }\n        assetUrl\n      }\n      totalItems\n    }\n  }\n",
+): (typeof documents)["\nquery Quotes($options:QuoteListOptions) {\n  quotes(options: $options) {\n      items {\n        id\n        createdAt\n        fullName\n        userEmail\n        fromPhone\n        uuid\n        forProducts{\n          productId\n          id\n          createdAt\n          sku\n          name\n          featuredAsset{\n           preview\n         }\n         assets{\n          preview\n         }\n          \n        }\n        assetUrl\n      }\n      totalItems\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
 }
 
-export type DocumentType<TDocumentNode extends DocumentNode<any, any>> = TDocumentNode extends DocumentNode<  infer TType,  any>  ? TType  : never;
+export type DocumentType<TDocumentNode extends DocumentNode<any, any>> =
+  TDocumentNode extends DocumentNode<infer TType, any> ? TType : never;

@@ -1,114 +1,119 @@
 <vdr-page-header>
-   <vdr-page-title></vdr-page-title>
- </vdr-page-header>
+  <vdr-page-title></vdr-page-title>
+</vdr-page-header>
 <vdr-page-block>
-   <vdr-action-bar>
-       <vdr-ab-right>
-      
-         <button #myInput
-         class="button primary"
-         (click)="generateXl(items$)">
+  <vdr-action-bar>
+    <vdr-ab-right>
+      <button #myInput class="button primary" (click)="generateXl(items$)">
         Export all Quotes to EXCEL
-        </button>
-
-       </vdr-ab-right>
-   </vdr-action-bar>
+      </button>
+    </vdr-ab-right>
+  </vdr-action-bar>
 </vdr-page-block>
 <vdr-page-detail-layout>
+  <vdr-data-table-2
+    id="quotes"
+    [items]="items$ | async"
+    [itemsPerPage]="itemsPerPage$ | async"
+    [totalItems]="totalItems$ | async"
+    [currentPage]="currentPage$ | async"
+    [filters]="filters"
+    (pageChange)="setPageNumber($event)"
+    (itemsPerPageChange)="setItemsPerPage($event)"
+  >
+    <!-- optional if you want to support bulk actions -->
+    <vdr-bulk-action-menu
+      locationId="quotes"
+      [hostComponent]="this"
+      [selectionManager]="selectionManager"
+    />
 
-      <vdr-data-table-2
-      id="quotes"
-      [items]="items$ | async"
-      [itemsPerPage]="itemsPerPage$ | async"
-      [totalItems]="totalItems$ | async"
-      [currentPage]="currentPage$ | async"
-      [filters]="filters"
-      (pageChange)="setPageNumber($event)"
-      (itemsPerPageChange)="setItemsPerPage($event)"
->
-  <!-- optional if you want to support bulk actions -->
-  <vdr-bulk-action-menu
-          locationId="quotes"
-          [hostComponent]="this"
-          [selectionManager]="selectionManager"
-  />
-  
-  <!-- Adds a search bar -->
+    <!-- Adds a search bar -->
 
-  <vdr-dt2-search
-          [searchTermControl]="searchTermControl"
-          searchTermPlaceholder="Filter by userEmail"
-  />
-  <vdr-dt2-column heading="Id">
-   <ng-template let-review="item">{{review.id}}</ng-template>
-  </vdr-dt2-column>
-  <vdr-dt2-column heading="Created At">
-   <ng-template let-review="item">{{review.createdAt | date}}</ng-template>
-  </vdr-dt2-column>
-  <vdr-dt2-column heading="Full Name">
-   <ng-template let-review="item">{{review.fullName}}</ng-template>
-  </vdr-dt2-column>
-  <vdr-dt2-column heading="Email">
-   <ng-template let-review="item">{{review.userEmail}}</ng-template>
-  </vdr-dt2-column>
-  <vdr-dt2-column heading="Phone Number">
-   <ng-template let-review="item">{{review.fromPhone}}</ng-template>
-  </vdr-dt2-column>
-  <vdr-dt2-column heading="Product Name">
-   <ng-template let-review="item" >{{review.forProducts[0].name}}</ng-template>
-  </vdr-dt2-column>
-  <vdr-dt2-column heading="Product SKU">
-   <ng-template let-review="item" >
-      <vdr-chip [colorFrom]="review.value"
+    <vdr-dt2-search
+      [searchTermControl]="searchTermControl"
+      searchTermPlaceholder="Filter by userEmail"
+    />
+    <vdr-dt2-column heading="Id">
+      <ng-template let-review="item">{{ review.id }}</ng-template>
+    </vdr-dt2-column>
+    <vdr-dt2-column heading="Created At">
+      <ng-template let-review="item">{{ review.createdAt | date }}</ng-template>
+    </vdr-dt2-column>
+    <vdr-dt2-column heading="Full Name">
+      <ng-template let-review="item">{{ review.fullName }}</ng-template>
+    </vdr-dt2-column>
+    <vdr-dt2-column heading="Email">
+      <ng-template let-review="item">{{ review.userEmail }}</ng-template>
+    </vdr-dt2-column>
+    <vdr-dt2-column heading="Phone Number">
+      <ng-template let-review="item">{{ review.fromPhone }}</ng-template>
+    </vdr-dt2-column>
+    <vdr-dt2-column heading="Product Name">
+      <ng-template let-review="item">{{
+        review.forProducts[0].name
+      }}</ng-template>
+    </vdr-dt2-column>
+    <vdr-dt2-column heading="Product SKU">
+      <ng-template let-review="item">
+        <vdr-chip
+          [colorFrom]="review.value"
           icon="eye"
-          (iconClick)="showDetail(review)"  >
-          {{review.forProducts[0].sku}}</vdr-chip>
+          (iconClick)="showDetail(review)"
+        >
+          {{ review.forProducts[0].sku }}</vdr-chip
+        >
       </ng-template>
-  </vdr-dt2-column>
-  <vdr-dt2-column heading="Action">
-   <ng-template let-review="item">
-      <button class="button success" (click)="openFile(review)"
-      [disabled]="!(['ReadQuotes','UpdateQuotes'] | hasPermission) || !review.assetUrl">
-         View Quote
-      </button>
-   </ng-template>
-  </vdr-dt2-column>
-  <vdr-dt2-column heading="">
-   <ng-template let-review="item">
-      <button class="button danger" (click)="delete(review.id)"
-      [disabled]="!(['ReadQuotes','UpdateQuotes'] | hasPermission) || !review.assetUrl">
-         Delete
-      </button>
-   </ng-template>
-  </vdr-dt2-column>
- </vdr-data-table-2>
+    </vdr-dt2-column>
+    <vdr-dt2-column heading="Action">
+      <ng-template let-review="item">
+        <button
+          class="button success"
+          (click)="openFile(review)"
+          [disabled]="
+            !(['ReadQuotes', 'UpdateQuotes'] | hasPermission) ||
+            !review.assetUrl
+          "
+        >
+          View Quote
+        </button>
+      </ng-template>
+    </vdr-dt2-column>
+    <vdr-dt2-column heading="">
+      <ng-template let-review="item">
+        <button
+          class="button danger"
+          (click)="delete(review.id)"
+          [disabled]="
+            !(['ReadQuotes', 'UpdateQuotes'] | hasPermission) ||
+            !review.assetUrl
+          "
+        >
+          Delete
+        </button>
+      </ng-template>
+    </vdr-dt2-column>
+  </vdr-data-table-2>
 
- <vdr-page-detail-sidebar>
-   <vdr-card *ngIf="quote.length!=0">
+  <vdr-page-detail-sidebar>
+    <vdr-card *ngIf="quote.length != 0">
       Quote Detail
-      <p>createdAt: {{quote[0].createdAt | date}}</p>
-   </vdr-card>
-   <vdr-card *ngIf="quote.length!=0">
+      <p>createdAt: {{ quote[0].createdAt | date }}</p>
+    </vdr-card>
+    <vdr-card *ngIf="quote.length != 0">
       product info
       <p>
-         Name: {{quote[0].forProducts[0].name}} <br>
-         SKU:  {{quote[0].forProducts[0].sku}}
+        Name: {{ quote[0].forProducts[0].name }} <br />
+        SKU: {{ quote[0].forProducts[0].sku }}
       </p>
-      
-   </vdr-card>
-   <vdr-card *ngIf="quote.length!=0">
-      customer info 
+    </vdr-card>
+    <vdr-card *ngIf="quote.length != 0">
+      customer info
       <p>
-         Name:  {{quote[0].fullName}}   <br>
-         Email: {{quote[0].userEmail}}  <br>
-         Phone: {{quote[0].fromPhone}}    <br>
+        Name: {{ quote[0].fullName }} <br />
+        Email: {{ quote[0].userEmail }} <br />
+        Phone: {{ quote[0].fromPhone }} <br />
       </p>
-      
-   </vdr-card>
-
-   
-
-</vdr-page-detail-sidebar>
-   
-</vdr-page-detail-layout>      
-
+    </vdr-card>
+  </vdr-page-detail-sidebar>
+</vdr-page-detail-layout>

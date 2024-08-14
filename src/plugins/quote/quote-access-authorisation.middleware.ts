@@ -1,11 +1,11 @@
-import { Administrator , TransactionalConnection} from '@vendure/core';
-import { Injectable, NestMiddleware } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
+import { Administrator, TransactionalConnection } from "@vendure/core";
+import { Injectable, NestMiddleware } from "@nestjs/common";
+import { Request, Response, NextFunction } from "express";
 // import { getCurrentUser } from '../../addons/api/get-current-user';
-import { Quote } from './entities/quote.entity';
+import { Quote } from "./entities/quote.entity";
 @Injectable()
 export class QuoteAccessAuthorizationMiddleware implements NestMiddleware {
-  constructor(private transactionalConnection:TransactionalConnection){}
+  constructor(private transactionalConnection: TransactionalConnection) {}
   async use(req: Request, res: Response, next: NextFunction) {
     // const currentUser= await getCurrentUser(req, 'bearer');
     // if(currentUser){
@@ -23,4 +23,3 @@ export class QuoteAccessAuthorizationMiddleware implements NestMiddleware {
     // }
   }
 }
-
