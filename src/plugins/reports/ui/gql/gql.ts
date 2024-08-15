@@ -13,11 +13,11 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-  "\n  query getCompletedOrder($options:CompletedOrderListOptions) {\n    getCompletedOrder(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        code\n        state\n        active\n        orderPlacedAt\n        subTotal\n        subTotalWithTax\n        shipping\n        shippingWithTax\n        customerId\n        type\n        currencyCode\n        shippingAddress{\n          fullName\n        }\n      }\n      totalItems\n    }\n  }\n":
+  "\n  query getCompletedOrder($options: CompletedOrderListOptions) {\n    getCompletedOrder(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        code\n        state\n        active\n        orderPlacedAt\n        subTotal\n        subTotalWithTax\n        shipping\n        shippingWithTax\n        customerId\n        type\n        currencyCode\n        shippingAddress {\n          fullName\n        }\n      }\n      totalItems\n    }\n  }\n":
     types.GetCompletedOrderDocument,
-  "\n  query getRefundList($options:RefundListOptions) {\n    getRefundList(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        items\n        shipping\n        adjustment\n        total \n        method\n        reason\n        state\n        transactionId\n        paymentId\n            \n      }\n      totalItems\n    }\n  }\n":
+  "\n  query getRefundList($options: RefundListOptions) {\n    getRefundList(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        items\n        shipping\n        adjustment\n        total\n        method\n        reason\n        state\n        transactionId\n        paymentId\n      }\n      totalItems\n    }\n  }\n":
     types.GetRefundListDocument,
-  "\n  query getStockList($options:StockNewListOptions) {\n    getStockList(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        sku\n        enabled\n        price\n        priceIncludesTax\n        stock\n        closingStock\n        stockOnHand\n      }\n      totalItems\n    }\n  }\n":
+  "\n  query getStockList($options: StockNewListOptions) {\n    getStockList(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        sku\n        enabled\n        price\n        priceIncludesTax\n        stock\n        closingStock\n        stockOnHand\n      }\n      totalItems\n    }\n  }\n":
     types.GetStockListDocument,
 };
 
@@ -39,20 +39,20 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  query getCompletedOrder($options:CompletedOrderListOptions) {\n    getCompletedOrder(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        code\n        state\n        active\n        orderPlacedAt\n        subTotal\n        subTotalWithTax\n        shipping\n        shippingWithTax\n        customerId\n        type\n        currencyCode\n        shippingAddress{\n          fullName\n        }\n      }\n      totalItems\n    }\n  }\n",
-): (typeof documents)["\n  query getCompletedOrder($options:CompletedOrderListOptions) {\n    getCompletedOrder(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        code\n        state\n        active\n        orderPlacedAt\n        subTotal\n        subTotalWithTax\n        shipping\n        shippingWithTax\n        customerId\n        type\n        currencyCode\n        shippingAddress{\n          fullName\n        }\n      }\n      totalItems\n    }\n  }\n"];
+  source: "\n  query getCompletedOrder($options: CompletedOrderListOptions) {\n    getCompletedOrder(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        code\n        state\n        active\n        orderPlacedAt\n        subTotal\n        subTotalWithTax\n        shipping\n        shippingWithTax\n        customerId\n        type\n        currencyCode\n        shippingAddress {\n          fullName\n        }\n      }\n      totalItems\n    }\n  }\n",
+): (typeof documents)["\n  query getCompletedOrder($options: CompletedOrderListOptions) {\n    getCompletedOrder(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        code\n        state\n        active\n        orderPlacedAt\n        subTotal\n        subTotalWithTax\n        shipping\n        shippingWithTax\n        customerId\n        type\n        currencyCode\n        shippingAddress {\n          fullName\n        }\n      }\n      totalItems\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  query getRefundList($options:RefundListOptions) {\n    getRefundList(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        items\n        shipping\n        adjustment\n        total \n        method\n        reason\n        state\n        transactionId\n        paymentId\n            \n      }\n      totalItems\n    }\n  }\n",
-): (typeof documents)["\n  query getRefundList($options:RefundListOptions) {\n    getRefundList(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        items\n        shipping\n        adjustment\n        total \n        method\n        reason\n        state\n        transactionId\n        paymentId\n            \n      }\n      totalItems\n    }\n  }\n"];
+  source: "\n  query getRefundList($options: RefundListOptions) {\n    getRefundList(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        items\n        shipping\n        adjustment\n        total\n        method\n        reason\n        state\n        transactionId\n        paymentId\n      }\n      totalItems\n    }\n  }\n",
+): (typeof documents)["\n  query getRefundList($options: RefundListOptions) {\n    getRefundList(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        items\n        shipping\n        adjustment\n        total\n        method\n        reason\n        state\n        transactionId\n        paymentId\n      }\n      totalItems\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  query getStockList($options:StockNewListOptions) {\n    getStockList(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        sku\n        enabled\n        price\n        priceIncludesTax\n        stock\n        closingStock\n        stockOnHand\n      }\n      totalItems\n    }\n  }\n",
-): (typeof documents)["\n  query getStockList($options:StockNewListOptions) {\n    getStockList(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        sku\n        enabled\n        price\n        priceIncludesTax\n        stock\n        closingStock\n        stockOnHand\n      }\n      totalItems\n    }\n  }\n"];
+  source: "\n  query getStockList($options: StockNewListOptions) {\n    getStockList(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        sku\n        enabled\n        price\n        priceIncludesTax\n        stock\n        closingStock\n        stockOnHand\n      }\n      totalItems\n    }\n  }\n",
+): (typeof documents)["\n  query getStockList($options: StockNewListOptions) {\n    getStockList(options: $options) {\n      items {\n        id\n        createdAt\n        updatedAt\n        sku\n        enabled\n        price\n        priceIncludesTax\n        stock\n        closingStock\n        stockOnHand\n      }\n      totalItems\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

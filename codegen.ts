@@ -13,6 +13,38 @@ const config: CodegenConfig = {
   },
   generates: {
     // './src/plugins/my-new-feature/gql/generated.ts': { plugins: ['typescript'] },
+    "./src/plugins/activity-log/gql/generated.ts": { plugins: ["typescript"] },
+    "./src/plugins/activity-log/ui/gql/": {
+      preset: "client",
+      documents: "./src/plugins/activity-log/ui/**/*.ts",
+      presetConfig: {
+        fragmentMasking: false,
+      },
+    },
+    "./src/plugins/charts/gql/generated.ts": { plugins: ["typescript"] },
+    "./src/plugins/charts/ui/gql/": {
+      preset: "client",
+      documents: "./src/plugins/charts/ui/**/*.ts",
+      presetConfig: {
+        fragmentMasking: false,
+      },
+    },
+    "./src/plugins/reports/gql/generated.ts": { plugins: ["typescript"] },
+    "./src/plugins/reports/ui/gql/": {
+      preset: "client",
+      documents: "./src/plugins/reports/ui/**/*.ts",
+      presetConfig: {
+        fragmentMasking: false,
+      },
+    },
+    "./src/plugins/reviews/gql/generated.ts": { plugins: ["typescript"] },
+    "./src/plugins/reviews/ui/gql/": {
+      preset: "client",
+      documents: "./src/plugins/reviews/ui/**/*.ts",
+      presetConfig: {
+        fragmentMasking: false,
+      },
+    },
   },
 };
 

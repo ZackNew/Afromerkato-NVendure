@@ -19,6 +19,7 @@ import { ReportsPlugin } from "./plugins/reports/reports.plugin";
 // import { QuotesPlugin } from "./plugins/quotes/quotes.plugin";
 import { ReviewsPlugin } from "./plugins/reviews/reviews-plugin";
 import { ChartsPlugin } from "./plugins/charts/charts.plugin";
+import { ActivityLogPlugin } from "./plugins/activity-log/activity-log.plugin";
 
 const IS_DEV = process.env.APP_ENV === "dev";
 
@@ -142,9 +143,9 @@ export const config: VendureConfig = {
             translations: { en: path.join(__dirname, "translations/en.json") },
           },
           ReportsPlugin.ui,
-          //QuotesPlugin.ui,
           ReviewsPlugin.uiExtensions,
           ChartsPlugin.ui,
+          ActivityLogPlugin.ui,
         ],
       }),
 
@@ -156,8 +157,8 @@ export const config: VendureConfig = {
       // },
     }),
     ReportsPlugin,
-    // QuotesPlugin.init({}),
     ReviewsPlugin,
     ChartsPlugin.init({}),
+    ActivityLogPlugin,
   ],
 };

@@ -7022,98 +7022,32 @@ export type ZoneSortParameter = {
   updatedAt?: InputMaybe<SortOrder>;
 };
 
-export type GetCompletedOrderQueryVariables = Exact<{
-  options?: InputMaybe<CompletedOrderListOptions>;
+export type GetAllReviewsQueryVariables = Exact<{
+  options?: InputMaybe<ProductReviewListOptions>;
 }>;
 
-export type GetCompletedOrderQuery = {
+export type GetAllReviewsQuery = {
   __typename?: "Query";
-  getCompletedOrder: {
-    __typename?: "CompletedOrderList";
-    totalItems: number;
+  productReviews: {
+    __typename?: "ProductReviewList";
     items: Array<{
-      __typename?: "CompletedOrder";
+      __typename?: "ProductReview";
       id: string;
-      createdAt?: any | null;
-      updatedAt?: any | null;
-      code?: string | null;
-      state?: string | null;
-      active?: string | null;
-      orderPlacedAt?: any | null;
-      subTotal?: string | null;
-      subTotalWithTax?: string | null;
-      shipping?: string | null;
-      shippingWithTax?: string | null;
-      customerId?: string | null;
-      type?: string | null;
-      currencyCode?: string | null;
-      shippingAddress?: {
-        __typename?: "ShippingAddress";
-        fullName?: string | null;
-      } | null;
+      createdAt: any;
+      authorName: string;
+      summary: string;
+      rating: number;
     }>;
   };
 };
 
-export type GetRefundListQueryVariables = Exact<{
-  options?: InputMaybe<RefundListOptions>;
-}>;
-
-export type GetRefundListQuery = {
-  __typename?: "Query";
-  getRefundList: {
-    __typename?: "RefundList";
-    totalItems: number;
-    items: Array<{
-      __typename?: "RefundNew";
-      id: string;
-      createdAt?: string | null;
-      updatedAt?: string | null;
-      items?: string | null;
-      shipping?: string | null;
-      adjustment?: string | null;
-      total?: string | null;
-      method?: string | null;
-      reason?: string | null;
-      state?: string | null;
-      transactionId?: string | null;
-      paymentId?: string | null;
-    }>;
-  };
-};
-
-export type GetStockListQueryVariables = Exact<{
-  options?: InputMaybe<StockNewListOptions>;
-}>;
-
-export type GetStockListQuery = {
-  __typename?: "Query";
-  getStockList: {
-    __typename?: "StockNewList";
-    totalItems: number;
-    items: Array<{
-      __typename?: "StockNew";
-      id: string;
-      createdAt?: string | null;
-      updatedAt?: string | null;
-      sku?: string | null;
-      enabled?: string | null;
-      price?: string | null;
-      priceIncludesTax?: string | null;
-      stock?: string | null;
-      closingStock?: string | null;
-      stockOnHand?: string | null;
-    }>;
-  };
-};
-
-export const GetCompletedOrderDocument = {
+export const GetAllReviewsDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "getCompletedOrder" },
+      name: { kind: "Name", value: "GetAllReviews" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -7123,7 +7057,7 @@ export const GetCompletedOrderDocument = {
           },
           type: {
             kind: "NamedType",
-            name: { kind: "Name", value: "CompletedOrderListOptions" },
+            name: { kind: "Name", value: "ProductReviewListOptions" },
           },
         },
       ],
@@ -7132,7 +7066,7 @@ export const GetCompletedOrderDocument = {
         selections: [
           {
             kind: "Field",
-            name: { kind: "Name", value: "getCompletedOrder" },
+            name: { kind: "Name", value: "productReviews" },
             arguments: [
               {
                 kind: "Argument",
@@ -7159,60 +7093,19 @@ export const GetCompletedOrderDocument = {
                       },
                       {
                         kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "code" } },
-                      { kind: "Field", name: { kind: "Name", value: "state" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "active" },
+                        name: { kind: "Name", value: "authorName" },
                       },
                       {
                         kind: "Field",
-                        name: { kind: "Name", value: "orderPlacedAt" },
+                        name: { kind: "Name", value: "summary" },
                       },
                       {
                         kind: "Field",
-                        name: { kind: "Name", value: "subTotal" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "subTotalWithTax" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "shipping" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "shippingWithTax" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "customerId" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "type" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "currencyCode" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "shippingAddress" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "fullName" },
-                            },
-                          ],
-                        },
+                        name: { kind: "Name", value: "rating" },
                       },
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "totalItems" } },
               ],
             },
           },
@@ -7220,185 +7113,4 @@ export const GetCompletedOrderDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<
-  GetCompletedOrderQuery,
-  GetCompletedOrderQueryVariables
->;
-export const GetRefundListDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getRefundList" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "options" },
-          },
-          type: {
-            kind: "NamedType",
-            name: { kind: "Name", value: "RefundListOptions" },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getRefundList" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "options" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "options" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "items" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "createdAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "items" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "shipping" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "adjustment" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "total" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "method" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "reason" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "state" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "transactionId" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "paymentId" },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "totalItems" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetRefundListQuery, GetRefundListQueryVariables>;
-export const GetStockListDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getStockList" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "options" },
-          },
-          type: {
-            kind: "NamedType",
-            name: { kind: "Name", value: "StockNewListOptions" },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getStockList" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "options" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "options" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "items" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "createdAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "sku" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "enabled" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "price" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "priceIncludesTax" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "stock" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "closingStock" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "stockOnHand" },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "totalItems" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetStockListQuery, GetStockListQueryVariables>;
+} as unknown as DocumentNode<GetAllReviewsQuery, GetAllReviewsQueryVariables>;
