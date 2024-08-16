@@ -20,6 +20,7 @@ import { ReportsPlugin } from "./plugins/reports/reports.plugin";
 import { ReviewsPlugin } from "./plugins/reviews/reviews-plugin";
 import { ChartsPlugin } from "./plugins/charts/charts.plugin";
 import { ActivityLogPlugin } from "./plugins/activity-log/activity-log.plugin";
+import { QuotePlugin } from "./plugins/quote/quote.plugin";
 
 const IS_DEV = process.env.APP_ENV === "dev";
 
@@ -146,6 +147,7 @@ export const config: VendureConfig = {
           ReviewsPlugin.uiExtensions,
           ChartsPlugin.ui,
           ActivityLogPlugin.ui,
+          QuotePlugin.ui
         ],
       }),
 
@@ -160,5 +162,6 @@ export const config: VendureConfig = {
     ReviewsPlugin,
     ChartsPlugin.init({}),
     ActivityLogPlugin,
+    QuotePlugin
   ],
 };
