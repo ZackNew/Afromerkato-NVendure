@@ -147,7 +147,7 @@ export const config: VendureConfig = {
           ReviewsPlugin.uiExtensions,
           ChartsPlugin.ui,
           ActivityLogPlugin.ui,
-          QuotePlugin.ui
+          QuotePlugin.ui,
         ],
       }),
 
@@ -162,6 +162,6 @@ export const config: VendureConfig = {
     ReviewsPlugin,
     ChartsPlugin.init({}),
     ActivityLogPlugin,
-    QuotePlugin
+    QuotePlugin,
   ],
 };
