@@ -7,6 +7,7 @@
     "yarn": "Please use NPM"
   },
   "scripts": {
+    "prepare": "husky .husky",
     "dev:server": "ts-node ./src/index.ts",
     "dev:worker": "ts-node ./src/index-worker.ts",
     "dev": "nodemon -x concurrently npm:dev:*",
@@ -33,6 +34,7 @@
     "chart.js": "4.3.0",
     "copyfiles": "^2.4.1",
     "dotenv": "16.4.5",
+    "install": "^0.13.0",
     "jspdf": "^2.5.1",
     "mysql": "2.18.1",
     "nodemon": "^3.1.4",
@@ -53,7 +55,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.9.0",
-    "husky": "^9.1.4",
+    "husky": "^9.1.5",
     "prettier": "3.3.3",
     "ts-node": "^10.9.2",
     "typescript": "5.3.3",
