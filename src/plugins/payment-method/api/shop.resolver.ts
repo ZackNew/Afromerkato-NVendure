@@ -20,9 +20,9 @@ export class paymentApiResolver {
     );
   }
 
-//   @Mutation()
-//  async payWithArifPay(@Ctx() ctx:RequestContext,@Args() arifPayInput:ArifPayInput):Promise<any>{
-//     return await this.arifpayService.payWithArifPay(ctx,arifPayInput);
-//   }
+  @Mutation()
+ async payWithArifPay(@Ctx() ctx:RequestContext,@Args() arifPayInput:ArifPayInput):Promise<any>{
+    return await this.arifpayService.payWithArifPay(ctx,arifPayInput);
+  }
  
 }
