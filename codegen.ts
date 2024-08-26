@@ -45,7 +45,8 @@ const config: CodegenConfig = {
         fragmentMasking: false,
       },
     },
-  },
+      './src/plugins/payment-method/gql/generated.ts': { plugins: ['typescript'] },
+},
 };
 
 export default config;
