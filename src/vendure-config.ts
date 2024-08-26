@@ -164,6 +164,6 @@ export const config: VendureConfig = {
     ChartsPlugin.init({}),
     ActivityLogPlugin,
     QuotePlugin,
-    PaymentMethodPlugin
+    PaymentMethodPlugin,
   ],
 };

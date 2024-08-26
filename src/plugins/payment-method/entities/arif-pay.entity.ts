@@ -1,12 +1,12 @@
 import { DeepPartial, VendureEntity } from "@vendure/core";
-import { Entity, Column,PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 export enum ArifPaySessionStatus {
-    SUCCESS = "Success",
-    PENDING = "Pending",
-    FAILED = "Failed",
-    CANCELLED="cancelled"
-  }
+  SUCCESS = "Success",
+  PENDING = "Pending",
+  FAILED = "Failed",
+  CANCELLED = "cancelled",
+}
 
 @Entity()
 export class Arifpay extends VendureEntity {
@@ -15,7 +15,7 @@ export class Arifpay extends VendureEntity {
   }
 
   @PrimaryGeneratedColumn()
-  id:string
+  id: string;
 
   @Column({ nullable: false })
   orderCode: string;
@@ -26,6 +26,6 @@ export class Arifpay extends VendureEntity {
   @Column({ nullable: false })
   sessionId: string;
 
-  @Column({ nullable: false,default:ArifPaySessionStatus.PENDING})
+  @Column({ nullable: false, default: ArifPaySessionStatus.PENDING })
   status: ArifPaySessionStatus;
 }

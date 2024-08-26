@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { CronJob } from "cron";
-import { CronExpression,SchedulerRegistry, Cron } from "@nestjs/schedule";
+import { CronExpression, SchedulerRegistry, Cron } from "@nestjs/schedule";
 // import { EtSwitchQueryInputs, Success } from "../../generated-shop-types";
 import axios from "axios";
 import https from "https"; // Import the 'https' module
@@ -27,13 +27,12 @@ export class paymentMethodsServices {
     private connection: TransactionalConnection,
     private orderService: OrderService,
     private configService: ConfigService,
-    private requestContextService: RequestContextService
+    private requestContextService: RequestContextService,
   ) {}
   async startETSwitchRequest(
     ctx: RequestContext,
-    etSwitchQueryInputs: EtSwitchQueryInputs
+    etSwitchQueryInputs: EtSwitchQueryInputs,
   ): Promise<Success> {
-    
     const etSwitchRepo = this.connection.getRepository(ctx, EtSwitchJob);
     const newjob = new EtSwitchJob({
       vOrderId: etSwitchQueryInputs.vOrderId,
@@ -50,7 +49,7 @@ export class paymentMethodsServices {
 
   private async checkEtSwitchStatus(
     ctx: RequestContext,
-    etSwitchQueryInputs: EtSwitchQueryInputs
+    etSwitchQueryInputs: EtSwitchQueryInputs,
   ) {
     // get the job
     const etSwitchRepo =
@@ -62,7 +61,7 @@ export class paymentMethodsServices {
 
     const timeDiff = this.timeDiffInMinutes(
       currentDate.toString(),
-      etJob!.createdAt.toString()
+      etJob!.createdAt.toString(),
     );
 
     if (timeDiff < 25) {
@@ -75,7 +74,7 @@ export class paymentMethodsServices {
               "Access-Control-Allow-Origin": "*",
             },
             httpsAgent: new https.Agent({ rejectUnauthorized: false }),
-          }
+          },
         )
         .then(async (res) => {
           if (res.data.OrderStatus != 0) {
@@ -95,7 +94,7 @@ export class paymentMethodsServices {
                 await this.orderService.transitionToState(
                   ctx,
                   order!.id,
-                  "ArrangingPayment"
+                  "ArrangingPayment",
                 );
 
                 await this.orderService.addPaymentToOrder(ctx, order!.id, {
@@ -110,20 +109,20 @@ export class paymentMethodsServices {
 
             // Stop the job
             const job = this.schedulerRegistry.getCronJob(
-              etSwitchQueryInputs.eOrderId
+              etSwitchQueryInputs.eOrderId,
             );
             job.stop();
           } else {
             console.log(
               "Sending request to et switch for order:",
-              etSwitchQueryInputs.vOrderId
+              etSwitchQueryInputs.vOrderId,
             );
           }
         });
     } else {
       // Stop the job
       const job = this.schedulerRegistry.getCronJob(
-        etSwitchQueryInputs.eOrderId
+        etSwitchQueryInputs.eOrderId,
       );
       job.stop();
     }
@@ -135,7 +134,7 @@ export class paymentMethodsServices {
     });
     this.schedulerRegistry.addCronJob(
       etSwitchQueryInputs["input"].eOrderId,
-      job
+      job,
     );
     job.start();
   }
